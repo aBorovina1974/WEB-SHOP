@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  height: 50px;
+  padding: 0 0.875rem;
+  text-align: center;
+}
+
+.menu {
+  margin: 0 2rem 0 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@media (min-width: 40rem) {
+  .menu {
+    display: none;
+  }
+
+  .header {
+    height: 115px;
+    padding: 0 1.312rem;
+  }
+
+  .logo {
+    transform: scale(1.42);
+  }
+}
+
+.search {
+  margin-right: 1rem;
+}
+
+.logo {
+  transform: scale(1);
+}
