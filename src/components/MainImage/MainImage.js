@@ -2,11 +2,10 @@ import React from "react";
 import styles from "./MainImage.module.css";
 import mainImg from "../../assets/mainImg.png";
 
-const MainImage = (props) => {
+const MainImage = () => {
   return (
-    <div className={styles["main-image"]}>
-      {props.children}
-      <img src={mainImg} alt="A table full of delicious food" />
+    <div className={styles.image}>
+      <img src={mainImg} alt="MainImage" />
     </div>
   );
 };

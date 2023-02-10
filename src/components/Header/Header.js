@@ -12,7 +12,7 @@ const Header = () => {
       <Button className={styles.menu}>
         <MenuIcon />
       </Button>
-      <LogoIcon className={styles.logo} />
+      <LogoIcon />
       <div>
         <SearchIcon className={styles.search} />
         <CartIcon />
