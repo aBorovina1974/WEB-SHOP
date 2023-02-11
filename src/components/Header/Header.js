@@ -4,6 +4,7 @@ import LogoIcon from "../UI/icons/LogoIcon";
 import SearchIcon from "../UI/icons/SearchIcon";
 import CartIcon from "../UI/icons/CartIcon";
 import Button from "../UI/buttons/Button";
+import MainNavigation from "../MainNavigation/MainNavigation";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -13,6 +14,7 @@ const Header = () => {
         <MenuIcon />
       </Button>
       <LogoIcon />
+      <MainNavigation />
       <div>
         <SearchIcon className={styles.search} />
         <CartIcon />

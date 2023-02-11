@@ -1,0 +1,40 @@
+.navigation {
+  display: none;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.list li {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.navigation a {
+  text-decoration: none;
+  vertical-align: middle;
+  color: white;
+}
+
+.navigation a:hover,
+.navigation a:active {
+  text-decoration: underline;
+  text-decoration-color: #eb5757;
+  text-underline-offset: 0.3125rem;
+}
+
+@media (min-width: 40rem) {
+  .navigation {
+    display: flex;
+    width: 60%;
+    max-width: 60%;
+    min-width: 50%;
+  }
+}
