@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.search span {
+  display: none;
+}
+
+@media (min-width: 40rem) {
+  .search {
+    margin-left: 1.5rem;
+    margin-right: auto;
+  }
+  .search span {
+    display: inline;
+    font-family: "OswaldSemiBold";
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,52 @@
+.menu {
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 3.125rem;
+  width: 20rem;
+  height: 23rem;
+  background-color: black;
+}
+
+.search {
+  position: absolute;
+  left: 1rem;
+  top: 0.8125rem;
+}
+
+.items {
+  position: absolute;
+  top: 4.812rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 18.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.items li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 1.125rem;
+  padding: 0 0.5rem;
+  margin-bottom: 1.375rem;
+  font-family: "OswaldMedium";
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: white;
+}
+
+.items li a {
+  text-decoration: none;
+  color: white;
+  margin: 0 auto;
+}

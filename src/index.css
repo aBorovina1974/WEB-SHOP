@@ -6,3 +6,48 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@font-face {
+  font-family: "OswaldRegular";
+  src: local("OswaldRegular"),
+    url("./fonts/Oswald/Oswald-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OswaldMedium";
+  src: local("OswaldMedium"),
+    url("./fonts/Oswald/Oswald-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: "normal";
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OswaldSemibold";
+  src: local("OswaldSemibold"),
+    url("./fonts/Oswald/Oswald-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: local("RobotoRegular"),
+    url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "RobotoMedium";
+  src: local("RobotoMedium"),
+    url("./fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

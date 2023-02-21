@@ -1,6 +1,6 @@
 import React from "react";
 
-const LeftArrowIcon = () => {
+const LeftArrowIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="9"
@@ -8,10 +8,11 @@ const LeftArrowIcon = () => {
       viewBox="0 0 9 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M8.01758 0.76001L2.21948 6.5581L8.01758 12.3562"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="2"
       />
     </svg>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartIcon = () => {
+const CartIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width="18"
@@ -8,6 +8,7 @@ const CartIcon = () => {
       viewBox="0 0 18 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         fillRule="evenodd"

@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import "./fonts/Oswald/Oswald-Regular.ttf";
+import "./fonts/Oswald/Oswald-Medium.ttf";
+import "./fonts/Oswald/Oswald-SemiBold.ttf";
+import "./fonts/Roboto/Roboto-Regular.ttf";
+import "./fonts/Roboto/Roboto-Medium.ttf";
 import "./index.css";
 //import reportWebVitals from './reportWebVitals';
 

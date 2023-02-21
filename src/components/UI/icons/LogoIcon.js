@@ -1,13 +1,13 @@
 import React from "react";
-const LogoIcon = ({ className }) => {
+const LogoIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      className={className}
       width="67"
       height="31"
       viewBox="0 0 67 31"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         fillRule="evenodd"

@@ -18,6 +18,7 @@
   border: none;
   background-color: black;
   cursor: pointer;
+  color: white;
 }
 
 .indicators {
@@ -43,11 +44,15 @@
 @media (min-width: 40rem) {
   .indicators:nth-of-type(1) {
     order: -1;
-    margin-right: auto;
+  }
+
+  .button {
+    margin-left: 0.187rem;
   }
 
   .indicators {
     margin-bottom: 1rem;
+    margin-right: auto;
   }
 
   .paging {
