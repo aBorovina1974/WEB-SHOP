@@ -1,0 +1,13 @@
+.brand {
+  width: 8.75rem;
+  height: 3.5rem;
+  background-color: transparent;
+  border: 2px solid gray;
+  cursor: pointer;
+}
+
+@media (min-width: 40rem) {
+  .brand {
+    border: none;
+  }
+}

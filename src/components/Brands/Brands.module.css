@@ -1,0 +1,40 @@
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  padding: 0.6875rem;
+}
+
+.brands {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.fieldset {
+  font-family: "OswaldRegular";
+  font-size: 1.25rem;
+  text-align: left;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .section {
+    padding-top: 0;
+  }
+
+  .brands {
+    justify-content: center;
+  }
+
+  .fieldset {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}

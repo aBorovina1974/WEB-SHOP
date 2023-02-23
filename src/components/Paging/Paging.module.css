@@ -1,5 +1,5 @@
 .paging {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 2.5625rem;
   bottom: 0.6875rem;
@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 0.875rem;
-  z-index: 10;
+  z-index: 1;
 }
 
 .button {
