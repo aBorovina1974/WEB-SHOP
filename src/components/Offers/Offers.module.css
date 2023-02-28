@@ -1,0 +1,18 @@
+.section {
+  display: grid;
+  gap: 0.6875rem;
+  width: 100vw;
+  padding: 0 0.6875rem;
+}
+
+.section div:nth-child(2) {
+  grid-row-end: span 2;
+}
+
+@media (min-width: 40rem) {
+  .section {
+    grid-template-columns: repeat(2, calc(50% - 0.34375rem));
+    align-items: stretch;
+    align-items: stretch;
+  }
+}

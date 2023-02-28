@@ -51,3 +51,12 @@ body {
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "RobotoLight";
+  src: local("RobotoLight"),
+    url("./fonts/Roboto/Roboto-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

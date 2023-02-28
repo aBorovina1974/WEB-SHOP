@@ -6,6 +6,7 @@ import "./fonts/Oswald/Oswald-Medium.ttf";
 import "./fonts/Oswald/Oswald-SemiBold.ttf";
 import "./fonts/Roboto/Roboto-Regular.ttf";
 import "./fonts/Roboto/Roboto-Medium.ttf";
+import "./fonts/Roboto/Roboto-Light.ttf";
 import "./index.css";
 //import reportWebVitals from './reportWebVitals';
 

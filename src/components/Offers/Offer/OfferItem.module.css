@@ -1,0 +1,49 @@
+.offer {
+  width: auto;
+  display: flex;
+  aspect-ratio: 2.116;
+}
+
+.ratio {
+  aspect-ratio: 1.054;
+}
+
+.content {
+  min-width: 50%;
+  max-width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.smaller {
+  min-width: 25%;
+  max-width: 25%;
+}
+
+.bigger {
+  min-width: 75%;
+  max-width: 75%;
+}
+
+.image {
+  vertical-align: bottom;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  padding: 0.5rem;
+}
+
+.title {
+  font-family: "OswaldSemibold";
+  font-size: 1rem;
+  margin-bottom: 0;
+  word-break: keep-all;
+}
+
+.subtitle {
+  font-family: "RobotoLight";
+  font-size: 0.625rem;
+}

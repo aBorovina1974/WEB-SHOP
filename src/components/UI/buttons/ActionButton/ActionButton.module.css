@@ -1,0 +1,10 @@
+.action {
+  width: 5.375rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 0.1rem solid black;
+  font-family: "OswaldSemibold";
+  font-size: 0.625rem;
+  color: black;
+  cursor: pointer;
+}
