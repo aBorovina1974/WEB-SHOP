@@ -11,13 +11,13 @@ import versaceLogo from "../../assets/brands/Versace.svg";
 
 const Brands = () => {
   const brandsLogos = [
-    armaniLogo,
-    burberryLogo,
-    chanelLogo,
-    diorLogo,
-    fendiLogo,
-    gucciLogo,
-    versaceLogo,
+    { logo: armaniLogo, id: 1 },
+    { logo: burberryLogo, id: 2 },
+    { logo: chanelLogo, id: 3 },
+    { logo: diorLogo, id: 4 },
+    { logo: fendiLogo, id: 5 },
+    { logo: gucciLogo, id: 6 },
+    { logo: versaceLogo, id: 7 },
   ];
   return (
     <section className={styles.section}>
@@ -25,8 +25,8 @@ const Brands = () => {
         <legend>CHOSE YOUR BRAND</legend>
         <ul className={styles.brands}>
           {brandsLogos.map((item) => (
-            <li>
-              <BrandItem logo={item} />
+            <li key={item.id}>
+              <BrandItem logo={item.logo} />
             </li>
           ))}
         </ul>

@@ -10,4 +10,8 @@
   .brand {
     border: none;
   }
+
+  .brand:hover {
+    background-color: #f0f2f2;
+  }
 }

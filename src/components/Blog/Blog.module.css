@@ -1,0 +1,29 @@
+.section {
+  width: 100vw;
+  background-color: #f8f9fb;
+  padding: 0.6875rem;
+}
+
+.title {
+  font-family: "OswaldRegular";
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.items {
+  display: grid;
+  gap: 0.6875rem;
+  grid-template-columns: repeat(auto-fit, minmax(18.25rem, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+  background-color: white;
+}

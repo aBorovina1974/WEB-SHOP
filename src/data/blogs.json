@@ -1,5 +1,6 @@
 [
   {
+    "type": "ARTICLE",
     "id": 1,
     "title": "A Brief History of Time",
     "text": "In this book, Stephen Hawking presents a series of cosmological theories and concepts, including the Big Bang, black holes, and the nature of time itself. He also discusses the role of physics in our understanding of the universe, and explores the ways in which scientific knowledge has evolved over time.",
@@ -7,6 +8,7 @@
     "author": "Stephen Hawking"
   },
   {
+    "type": "ARTICLE",
     "id": 2,
     "title": "The Catcher in the Rye",
     "text": "J.D. Salinger's classic novel tells the story of Holden Caulfield, a teenage boy who has been expelled from his prep school and is struggling to find his place in the world. The novel explores themes of alienation, loss, and the difficulties of growing up.",
@@ -14,6 +16,7 @@
     "author": "J.D. Salinger"
   },
   {
+    "type": "ARTICLE",
     "id": 3,
     "title": "To Kill a Mockingbird",
     "text": "Harper Lee's Pulitzer Prize-winning novel takes place in the fictional town of Maycomb, Alabama, and follows the story of Scout Finch, a young girl who is growing up during the Great Depression. Through Scout's eyes, we see the racial tensions and injustices of the time, as well as the courage and compassion of those who fight against them.",
@@ -21,6 +24,7 @@
     "author": "Harper Lee"
   },
   {
+    "type": "ARTICLE",
     "id": 4,
     "title": "The Lord of the Rings",
     "text": "J.R.R. Tolkien's epic fantasy trilogy tells the story of Frodo Baggins, a hobbit who is entrusted with the task of destroying the One Ring, a powerful artifact that has the power to enslave the world. Along the way, Frodo is aided by a fellowship of other characters, including wizards, elves, and dwarves, as they journey across Middle-earth to reach Mount Doom, where the Ring can be destroyed.",
@@ -28,6 +32,7 @@
     "author": "J.R.R. Tolkien"
   },
   {
+    "type": "ARTICLE",
     "id": 5,
     "title": "The Hitchhiker's Guide to the Galaxy",
     "text": "Douglas Adams' sci-fi comedy novel follows the misadventures of Arthur Dent, an ordinary human who is whisked away from Earth just before it is destroyed to make way for an interstellar highway. With the help of his alien friend Ford Prefect and the titular Hitchhiker's Guide to the Galaxy, Arthur travels through space and time in search of the meaning of life, the universe, and everything.",

@@ -12,7 +12,13 @@ const OfferItem = (props) => {
   );
   const info = (
     <div className={styles.info}>
-      <p className={styles.title}>{props.content.title}</p>
+      <p
+        className={`${styles.title} ${
+          props.content.type === "big" ? styles.discount : ""
+        }`}
+      >
+        {props.content.title}
+      </p>
       <p className={styles.subtitle}>{props.content.subtitle}</p>
       <ActionButton>{props.content.action}</ActionButton>
     </div>
@@ -20,9 +26,7 @@ const OfferItem = (props) => {
 
   return (
     <div
-      className={`${styles.offer} ${
-        props.content.type === "big" ? styles.ratio : ""
-      }`}
+      className={styles.offer}
       style={{ backgroundColor: props.content.backgroundColor }}
     >
       <div
