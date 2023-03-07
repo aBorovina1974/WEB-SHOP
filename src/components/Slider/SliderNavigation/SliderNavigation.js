@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "../UI/buttons/Button";
-import RightArrowIcon from "../UI/icons/RightArrowIcon";
-import LeftArrowIcon from "../UI/icons/LeftArrowIcon";
-import styles from "./Paging.module.css";
-const Paging = () => {
+import Button from "../../UI/buttons/Button";
+import RightArrowIcon from "../../UI/icons/RightArrowIcon";
+import LeftArrowIcon from "../../UI/icons/LeftArrowIcon";
+import styles from "./SliderNavigation.module.scss";
+const SliderNavigation = () => {
   return (
-    <div className={styles.paging}>
+    <div className={styles.navigation}>
       <Button className={styles.button}>
         <LeftArrowIcon />
       </Button>
@@ -22,4 +22,4 @@ const Paging = () => {
   );
 };
 
-export default Paging;
+export default SliderNavigation;

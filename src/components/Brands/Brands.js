@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Brands.module.css";
+import styles from "./Brands.module.scss";
 import BrandItem from "./BrandItem/BrandItem";
 import armaniLogo from "../../assets/brands/Armani.svg";
 import burberryLogo from "../../assets/brands/Burberry.svg";

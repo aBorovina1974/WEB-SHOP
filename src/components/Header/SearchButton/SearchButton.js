@@ -1,6 +1,6 @@
 import React from "react";
 import SearchIcon from "../../UI/icons/SearchIcon";
-import styles from "./SearchButton.module.css";
+import styles from "./SearchButton.module.scss";
 import useMatchMedia from "../../../hooks/useMatchMedia";
 
 const SearchButton = (props) => {
@@ -9,7 +9,11 @@ const SearchButton = (props) => {
     : { width: "19", height: "19" };
 
   return (
-    <button className={styles.search} onClick={props.onClick}>
+    <button
+      ref={props.searchBtnRef}
+      className={styles.search}
+      onClick={props.onClick}
+    >
       <SearchIcon width={width} height={height} />
       <span>SEARCH</span>
     </button>

@@ -1,0 +1,30 @@
+.actions {
+  display: none;
+
+  @media (min-width: 810px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: "OswaldSemiBold";
+    font-size: 0.875rem;
+    white-space: nowrap;
+    cursor: pointer;
+    color: white;
+  }
+  button {
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: transparent;
+    font-family: "OswaldSemiBold";
+    font-size: 0.875rem;
+    white-space: nowrap;
+    cursor: pointer;
+    color: white;
+  }
+}

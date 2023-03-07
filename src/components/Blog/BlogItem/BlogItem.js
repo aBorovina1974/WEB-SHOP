@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./BlogItem.module.css";
+import styles from "./BlogItem.module.scss";
 
 const BlogItem = (props) => {
   return (

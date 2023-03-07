@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-const useMatchMedia = (width = 40) => {
+const useMatchMedia = (width = 810) => {
   const [isMatch, setIsMatch] = useState(false);
   const matchMediaRef = useRef(null);
 
   useEffect(() => {
-    matchMediaRef.current = window.matchMedia(`(min-width: ${width}rem) `);
+    matchMediaRef.current = window.matchMedia(`(min-width: ${width}px) `);
     const initialMatch = matchMediaRef.current.matches;
 
     if (initialMatch) {

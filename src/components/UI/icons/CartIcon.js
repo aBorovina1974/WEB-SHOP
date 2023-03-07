@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartIcon = (props: React.SVGProps<SVGSVGElement>) => {
+const CartIcon = (props) => {
   return (
     <svg
       width="18"

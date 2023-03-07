@@ -1,6 +1,6 @@
 import React from "react";
 import OfferItem from "./Offer/OfferItem";
-import styles from "./Offers.module.css";
+import styles from "./Offers.module.scss";
 import chooseLookImg from "../../assets/ChooseLook.png";
 import newStyleImg from "../../assets/NewStyle.png";
 import discountImg from "../../assets/Discount.png";

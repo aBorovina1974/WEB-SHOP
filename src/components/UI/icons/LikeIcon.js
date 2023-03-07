@@ -1,6 +1,6 @@
 import React from "react";
 
-const LikeIcon = (props: React.SVGProps<SVGSVGElement>) => {
+const LikeIcon = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

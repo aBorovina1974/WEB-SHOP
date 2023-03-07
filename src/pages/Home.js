@@ -1,6 +1,6 @@
 import React from "react";
 import MainImage from "../components/MainImage/MainImage";
-import Paging from "../components/Paging/Paging";
+import SliderNavigation from "../components/Slider/SliderNavigation/SliderNavigation";
 import Brands from "../components/Brands/Brands";
 import Offers from "../components/Offers/Offers";
 import Blog from "../components/Blog/Blog";
@@ -8,8 +8,8 @@ const HomePage = () => {
   return (
     <>
       <div>
+        <SliderNavigation />
         <MainImage />
-        <Paging />
       </div>
       <Brands />
       <Offers />

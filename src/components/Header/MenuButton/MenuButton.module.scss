@@ -9,10 +9,8 @@
   background-color: transparent;
   color: white;
   cursor: pointer;
-}
 
-@media (min-width: 40rem) {
-  .button {
+  @media (min-width: 810px) {
     display: none;
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-const LeftArrowIcon = (props: React.SVGProps<SVGSVGElement>) => {
+const LeftArrowIcon = (props) => {
   return (
     <svg
       width="9"

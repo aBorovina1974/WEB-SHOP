@@ -1,6 +1,6 @@
 import React from "react";
 import LikeIcon from "../../UI/icons/LikeIcon";
-import styles from "./WishListButton.module.css";
+import styles from "./WishListButton.module.scss";
 const WishListButton = (props) => {
   return (
     <button className={styles.button} onClick={props.onClick}>

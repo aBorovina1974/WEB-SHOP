@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Blog.module.css";
+import styles from "./Blog.module.scss";
 import BlogItem from "./BlogItem/BlogItem";
 import Blogs from "../../data/blogs.json";
 

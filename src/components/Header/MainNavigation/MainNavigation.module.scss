@@ -1,0 +1,32 @@
+.list {
+  display: none;
+
+  @media (min-width: 810px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin-left: auto;
+  }
+
+  li {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: "OswaldSemiBold";
+    font-size: 0.875rem;
+    color: white;
+  }
+
+  a:hover,
+  a:active {
+    text-decoration: underline;
+    text-decoration-color: #eb5757;
+    text-underline-offset: 0.3125rem;
+  }
+}

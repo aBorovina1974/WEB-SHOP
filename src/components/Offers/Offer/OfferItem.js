@@ -1,6 +1,6 @@
 import React from "react";
 import ActionButton from "../../UI/buttons/ActionButton/ActionButton";
-import styles from "./OfferItem.module.css";
+import styles from "./OfferItem.module.scss";
 
 const OfferItem = (props) => {
   const image = (

@@ -1,11 +1,12 @@
 import React from "react";
-import styles from "./AccountActions.module.css";
+import { Link } from "react-router-dom";
+import styles from "./AccountActions.module.scss";
 
 const AccountActions = (props) => {
   return (
     <div className={styles.actions}>
       <button onClick={props.onClick}>SIGN IN</button>
-      <a href="#">SIGN UP</a>
+      <Link to={"/new"}>SIGN UP</Link>
     </div>
   );
 };

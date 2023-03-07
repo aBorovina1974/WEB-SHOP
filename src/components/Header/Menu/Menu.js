@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Menu.module.css";
+import styles from "./Menu.module.scss";
 import RightArrowIcon from "../../UI/icons/RightArrowIcon";
 import Search from "../../Search/Search";
 
@@ -15,7 +15,7 @@ const Menu = (props) => {
   ];
 
   return (
-    <div className={styles.menu}>
+    <div ref={props.menuRef} className={styles.menu}>
       <div className={styles.search}>
         <Search placeholder="Type something..." />
       </div>

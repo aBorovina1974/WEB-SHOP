@@ -4,14 +4,12 @@
   background-color: transparent;
   border: 2px solid gray;
   cursor: pointer;
-}
 
-@media (min-width: 40rem) {
-  .brand {
+  @media (min-width: 810px) {
     border: none;
-  }
 
-  .brand:hover {
-    background-color: #f0f2f2;
+    &:hover {
+      background-color: #f0f2f2;
+    }
   }
 }

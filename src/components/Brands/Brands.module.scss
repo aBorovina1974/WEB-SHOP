@@ -4,6 +4,10 @@
   align-items: center;
   width: 100vw;
   padding: 0.6875rem;
+
+  @media (min-width: 810px) {
+    padding-top: 0;
+  }
 }
 
 .brands {
@@ -15,6 +19,10 @@
   padding: 0;
   margin: 0;
   list-style: none;
+
+  @media (min-width: 810px) {
+    justify-content: center;
+  }
 }
 
 .fieldset {
@@ -22,9 +30,14 @@
   font-size: 1.25rem;
   text-align: left;
   width: 100%;
+
+  @media (min-width: 810px) {
+    font-size: 1.5rem;
+    text-align: center;
+  }
 }
 
-@media (min-width: 40rem) {
+/* @media (min-width: 810px) {
   .section {
     padding-top: 0;
   }
@@ -37,4 +50,4 @@
     font-size: 1.5rem;
     text-align: center;
   }
-}
+} */

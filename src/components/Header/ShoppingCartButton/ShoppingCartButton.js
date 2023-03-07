@@ -1,6 +1,6 @@
 import React from "react";
 import CartIcon from "../../UI/icons/CartIcon";
-import styles from "./ShoppingCartButton.module.css";
+import styles from "./ShoppingCartButton.module.scss";
 
 const ShoppingCartButton = (props) => {
   return (

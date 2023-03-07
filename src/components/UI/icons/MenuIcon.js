@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuIcon = () => {
+const MenuIcon = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +8,7 @@ const MenuIcon = () => {
       height="15"
       fill="none"
       viewBox="0 0 20 15"
+      {...props}
     >
       <path fill="#fff" d="M0 0h20v3H0zm0 6h20v3H0zm0 6h20v3H0z" />
     </svg>

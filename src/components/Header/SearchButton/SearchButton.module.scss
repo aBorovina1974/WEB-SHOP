@@ -9,20 +9,19 @@
   color: white;
   background-color: transparent;
   cursor: pointer;
-}
 
-.search span {
-  display: none;
-}
-
-@media (min-width: 40rem) {
-  .search {
+  @media (min-width: 810px) {
     margin-left: 1.5rem;
     margin-right: auto;
   }
-  .search span {
-    display: inline;
-    font-family: "OswaldSemiBold";
-    font-size: 0.875rem;
+
+  span {
+    display: none;
+
+    @media (min-width: 810px) {
+      display: inline;
+      font-family: "OswaldSemiBold";
+      font-size: 0.875rem;
+    }
   }
 }
