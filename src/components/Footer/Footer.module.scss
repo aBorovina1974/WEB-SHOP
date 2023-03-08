@@ -1,0 +1,23 @@
+.footer {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  padding: 2rem 0.875rem 0.5rem 0.875rem;
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  hr {
+    width: 100%;
+    color: #4f4f4f;
+  }
+
+  .logo {
+    align-self: flex-end;
+  }
+}
