@@ -1,0 +1,60 @@
+[
+  {
+    "id": "1",
+    "type": "nav",
+    "main": "FEATURES",
+    "list": [
+      { "title": "MEN", "id": "1" },
+      { "title": "WOOMAN", "id": "2" },
+      { "title": "BOYS", "id": "3" },
+      { "title": "GIRLS", "id": "4" },
+      { "title": "NEW ARRIVALS", "id": "5" },
+      { "title": "SHOES", "id": "6" },
+      { "title": "CLOTHES", "id": "7" },
+      { "title": "ACCESSORIES", "id": "8" }
+    ]
+  },
+  {
+    "id": "2",
+    "type": "nav",
+    "main": " MENU",
+    "list": [
+      { "title": "ABOUT US", "id": "1" },
+      { "title": "CONTACT US", "id": "2" },
+      { "title": "MY ACCOUNT", "id": "3" },
+      { "title": "ORDERS HISTORY", "id": "4" },
+      { "title": "MY WISHLIST", "id": "5" },
+      { "title": "BLOG", "id": "6" },
+      { "title": "LOGIN", "id": "7" }
+    ]
+  },
+  {
+    "id": "3",
+    "type": "info",
+    "main": " CONTACT US",
+    "list": [
+      {
+        "title": "ADDRESS",
+        "subtitle": "123 STREET NAME, CITY, CROATIA",
+        "id": "1"
+      },
+      { "title": "PHONE", "subtitle": "(123)456-7890", "id": "2" },
+      { "title": "EMAIL", "subtitle": "MAIL@EXAMPLE.COM", "id": "3" },
+      {
+        "title": "WORKING DAYS/HOURS",
+        "subtitle": "MON-SUN/9:00AM-8:00PM",
+        "id": "4"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "type": "nav",
+    "main": " FOLLOW US",
+    "list": [
+      { "title": "FACEBOOK", "icon": "facebook", "id": "1" },
+      { "title": "TWITTER", "icon": "twitter", "id": "2" },
+      { "title": "INSTAGRAM", "icon": "instagram", "id": "3" }
+    ]
+  }
+]

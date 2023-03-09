@@ -52,39 +52,6 @@
         color: #828282;
         margin: 0;
       }
-
-      form {
-        width: 15rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-
-        .newsletter {
-          font-family: "RobotoMedium";
-          font-size: 0.875rem;
-          color: #828282;
-          margin-bottom: 0.875rem;
-        }
-
-        input {
-          width: 100%;
-          height: 2rem;
-          border: 1px solid white;
-          background-color: transparent;
-          color: white;
-          margin-bottom: 0.5rem;
-        }
-
-        button.submit {
-          width: 100%;
-          height: 2rem;
-          background-color: white;
-          font-family: "OswaldRegular";
-          font-size: 0.875rem;
-          color: #3f3f3f;
-        }
-      }
     }
   }
 }
