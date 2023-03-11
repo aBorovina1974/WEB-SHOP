@@ -1,30 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import Newsletter from "../Newsletter/Newsletter";
+import useMatchMedia from "../../../hooks/useMatchMedia";
+import ExpandIcon from "../../UI/icons/ExpandIcon";
+import ColapseIcon from "../../UI/icons/ColapseIcon";
 import styles from "./FooterItem.module.scss";
 
 const FooterItem = (props) => {
+  const isMatchMedia = useMatchMedia(810);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const itemTitle = <span className={styles.title}>{props.title}</span>;
+
+  const toggleHandler = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
   return (
     <div className={styles.container}>
-      <button>{props.items.main}</button>
-      <ul className={styles.items}>
-        {props.items.list.map((item) => (
-          <li key={item.id}>
-            {props.items.type === "nav" && (
-              <a>
-                {item.icon && (
-                  <span className={styles.icon}>{props.icons[item.icon]}</span>
-                )}
-                <span>{item.title}</span>
-              </a>
-            )}
-            {props.items.type === "info" && (
-              <>
-                <h3>{`${item.title}:`}</h3>
-                <p>{item.subtitle}</p>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+      {props.toggle === true && !isMatchMedia ? (
+        <button
+          className={`${styles.toggle} ${isOpen ? styles.open : ""}`}
+          onClick={toggleHandler}
+        >
+          {itemTitle}
+          {isOpen ? <ColapseIcon /> : <ExpandIcon />}
+        </button>
+      ) : (
+        itemTitle
+      )}
+      {(isOpen || isMatchMedia || !props.toggle) && (
+        <div className={styles.content}>{props.children}</div>
+      )}
     </div>
   );
 };

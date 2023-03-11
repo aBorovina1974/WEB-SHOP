@@ -2,7 +2,7 @@
   {
     "id": "1",
     "type": "nav",
-    "main": "FEATURES",
+    "title": "FEATURES",
     "list": [
       { "title": "MEN", "id": "1" },
       { "title": "WOOMAN", "id": "2" },
@@ -17,7 +17,7 @@
   {
     "id": "2",
     "type": "nav",
-    "main": " MENU",
+    "title": " MENU",
     "list": [
       { "title": "ABOUT US", "id": "1" },
       { "title": "CONTACT US", "id": "2" },
@@ -31,7 +31,7 @@
   {
     "id": "3",
     "type": "info",
-    "main": " CONTACT US",
+    "title": " CONTACT US",
     "list": [
       {
         "title": "ADDRESS",
@@ -50,7 +50,7 @@
   {
     "id": "4",
     "type": "nav",
-    "main": " FOLLOW US",
+    "title": " FOLLOW US",
     "list": [
       { "title": "FACEBOOK", "icon": "facebook", "id": "1" },
       { "title": "TWITTER", "icon": "twitter", "id": "2" },
