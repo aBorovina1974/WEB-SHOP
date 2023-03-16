@@ -4,13 +4,15 @@ import SliderNavigation from "../components/Slider/SliderNavigation/SliderNaviga
 import Brands from "../components/Brands/Brands";
 import Offers from "../components/Offers/Offers";
 import Blog from "../components/Blog/Blog";
+import Slider from "../components/Slider/Slider";
 const HomePage = () => {
   return (
     <>
-      <div>
-        <SliderNavigation />
-        <MainImage />
-      </div>
+      {/* <div> */}
+      <MainImage />
+      <Slider />
+      {/* <SliderNavigation /> */}
+      {/* </div> */}
       <Brands />
       <Offers />
       <Blog />

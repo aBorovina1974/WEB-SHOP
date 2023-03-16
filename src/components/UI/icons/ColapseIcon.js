@@ -10,7 +10,7 @@ const ColapseIcon = (props) => {
       viewBox="0 0 19 2"
       {...props}
     >
-      <path stroke="#fff" strokeWdth="1.4" d="M19 1H0" />
+      <path stroke="#fff" strokeWidth="1.4" d="M19 1H0" />
     </svg>
   );
 };

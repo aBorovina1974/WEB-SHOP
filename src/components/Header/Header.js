@@ -10,7 +10,6 @@ import Menu from "./Menu/Menu";
 import SearchButton from "./SearchButton/SearchButton";
 import AccountActions from "./AccountActions/AccountActions";
 import MenuButton from "./MenuButton/MenuButton";
-import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,7 +45,9 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {isMenuOpen && !isMatchMedia && <Menu menuRef={clickOutsideRef} />}
+      {isMenuOpen && !isMatchMedia && (
+        <Menu menuRef={clickOutsideRef} onClose={toggleMenu} />
+      )}
       <MenuButton isOpen={isMenuOpen} onClick={toggleMenu} />
       <LogoIcon className={styles.logo} />
       <MainNavigation />

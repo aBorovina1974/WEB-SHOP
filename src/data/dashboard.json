@@ -1,0 +1,33 @@
+[
+  {
+    "id": "1",
+    "type": "ACCOUNT",
+    "title": "Account Information",
+    "subtitle": "Contact Information",
+    "name": "Ante Borovina",
+    "email": "anteborovina@example.com",
+    "action": "Edit"
+  },
+  {
+    "id": "2",
+    "type": "NEWSLETTER",
+    "subtitle": "Newsletters",
+    "text": "You don't subscribe to our newsletter.",
+    "action": "Edit"
+  },
+  {
+    "id": "3",
+    "type": "BOOK",
+    "title": "Address Book",
+    "subtitle": "Default Billing Address",
+    "text": "You have not set default billing address.",
+    "action": "Edit Address"
+  },
+  {
+    "id": "4",
+    "type": "SHIPPING",
+    "subtitle": "Default Shipping Address",
+    "text": "You have not set a default shipping address.",
+    "action": "Edit Address"
+  }
+]

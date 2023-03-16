@@ -1,0 +1,64 @@
+.container {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    font-family: "OswaldRegular";
+    font-size: 1rem;
+    color: #828282;
+    margin-bottom: 0;
+    text-transform: uppercase;
+
+    @media (min-width: 810px) {
+      font-size: 1.25rem;
+      color: black;
+      text-transform: initial;
+    }
+  }
+
+  h3 {
+    font-family: "OswaldMedium";
+    font-size: 0.875rem;
+    color: black;
+
+    @media (min-width: 810px) {
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      color: #3f3f3f;
+    }
+  }
+
+  p {
+    font-family: "RobotoRegular";
+    font-size: 1rem;
+    color: #828282;
+    margin-top: 0;
+  }
+
+  button {
+    height: 24px;
+    font-family: "RobotoMedium";
+    font-size: 0.875rem;
+    border: none;
+    background-color: #e6f1fa;
+    cursor: pointer;
+    color: black;
+  }
+  .button {
+    margin-left: 0.75rem;
+  }
+}
+#item2 {
+  align-self: center;
+}
+
+#item3,
+#item4 {
+  align-self: end;
+}
