@@ -3,7 +3,7 @@ import useMatchMedia from "../../../hooks/useMatchMedia";
 import ExpandArrowIcon from "../../UI/icons/ExpandArrowIcon";
 import styles from "./DashboardMenu.module.scss";
 
-const DashboardMenu = () => {
+const DashboardMenu = (props) => {
   const menuItems = [
     "Account Dashboard",
     "Account Information",
@@ -20,13 +20,17 @@ const DashboardMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  const listItemHandler = () => {
-    console.log("Content opened from list");
+  const setContentHandler = (index) => {
+    props.onSetContent(index);
+    setSelectedItem(menuItems[index]);
+  };
+
+  const listItemHandler = (index) => {
+    setContentHandler(index);
   };
 
   const dropdownItemHandler = (index) => {
-    console.log("Content opened from dropdown");
-    setSelectedItem(menuItems[index]);
+    setContentHandler(index);
     setIsOpen(false);
   };
 
@@ -50,10 +54,9 @@ const DashboardMenu = () => {
           {menuItems.map((item, index) => (
             <button
               key={index}
-              className={styles.selected}
               onClick={
                 isMatchMedia
-                  ? listItemHandler
+                  ? () => listItemHandler(index)
                   : () => dropdownItemHandler(index)
               }
             >

@@ -52,24 +52,6 @@
         margin-left: 2rem;
         width: 80%;
       }
-      .items {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(4);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-        @media (min-width: 810px) {
-          grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: repeat(2, 1fr);
-        }
-
-        li {
-          width: fit-content;
-          height: fit-content;
-        }
-      }
     }
   }
 }

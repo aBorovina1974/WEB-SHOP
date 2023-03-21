@@ -3,19 +3,25 @@ import Button from "../../UI/buttons/Button";
 import RightArrowIcon from "../../UI/icons/RightArrowIcon";
 import LeftArrowIcon from "../../UI/icons/LeftArrowIcon";
 import styles from "./SliderNavigation.module.scss";
-const SliderNavigation = () => {
+const SliderNavigation = (props) => {
   return (
     <div className={styles.navigation}>
-      <Button className={styles.button}>
+      <Button className={styles.button} onClick={props.slider.previous}>
         <LeftArrowIcon />
       </Button>
-      <div className={styles.indicators}>
-        <div></div>
-        <div className={styles.active}></div>
-        <div></div>
-        <div></div>
-      </div>
-      <Button className={styles.button}>
+      <ul className={styles.indicators}>
+        {props.slider.slides &&
+          props.slider.slides.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.indicator} ${
+                index === props.slider.active ? styles.active : ""
+              }`}
+              onClick={() => props.slider.set(index)}
+            ></button>
+          ))}
+      </ul>
+      <Button className={styles.button} onClick={props.slider.next}>
         <RightArrowIcon />
       </Button>
     </div>

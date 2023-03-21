@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NewAccountForm.module.scss";
-import AccFormInput from "../UI/inputs/form-inputs/AccFormInput";
+import FormInput from "../UI/inputs/FormInput/FormInput";
 
 const NewAccountForm = (props) => {
   return (
@@ -10,7 +10,7 @@ const NewAccountForm = (props) => {
         <div className={styles.border}>
           <form className={styles.form}>
             <h2>PERSONAL INFORMATION</h2>
-            <AccFormInput
+            <FormInput
               input={{
                 id: "1",
                 type: "text",
@@ -18,7 +18,7 @@ const NewAccountForm = (props) => {
                 position: "LEFT",
               }}
             />
-            <AccFormInput
+            <FormInput
               input={{
                 id: "2",
                 type: "text",
@@ -26,7 +26,7 @@ const NewAccountForm = (props) => {
                 position: "LEFT",
               }}
             />
-            <AccFormInput
+            <FormInput
               input={{
                 id: "3",
                 type: "checkbox",
@@ -37,7 +37,7 @@ const NewAccountForm = (props) => {
 
             <h2>SIGN UP FOR NEWSLETTER</h2>
 
-            <AccFormInput
+            <FormInput
               input={{
                 id: "4",
                 type: "email",
@@ -46,7 +46,7 @@ const NewAccountForm = (props) => {
                 placeholder: "ante.borovina@example.com",
               }}
             />
-            <AccFormInput
+            <FormInput
               input={{
                 id: "5",
                 type: "password",
@@ -55,7 +55,7 @@ const NewAccountForm = (props) => {
                 placeholder: "Password",
               }}
             />
-            <AccFormInput
+            <FormInput
               input={{
                 id: "6",
                 type: "password",

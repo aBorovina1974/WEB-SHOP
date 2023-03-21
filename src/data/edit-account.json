@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "type": "text",
+    "label": "First Name *",
+    "position": "LEFT"
+  },
+  {
+    "id": "2",
+    "type": "text",
+    "label": "First Name *",
+    "position": "LEFT"
+  },
+  {
+    "id": "3",
+    "type": "checkbox",
+    "label": "Change Email",
+    "position": "RIGHT"
+  },
+  {
+    "id": "4",
+    "type": "checkbox",
+    "label": "Change Password",
+    "position": "RIGHT"
+  }
+]

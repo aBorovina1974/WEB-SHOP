@@ -5,22 +5,22 @@
   align-items: flex-start;
   margin-bottom: 0.5rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 810px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-  &:nth-of-type(3) label {
-    margin: 0;
-  }
-
-  label {
+  .label {
     font-family: "RobotoRegular";
     font-size: 1rem;
     margin-right: 0.5rem;
     margin-bottom: 0.25rem;
     color: #3f3f3f;
+  }
+
+  .row {
+    margin: 0;
   }
 
   &::placeholder {
@@ -44,5 +44,7 @@
 }
 
 .space {
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
 }
