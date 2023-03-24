@@ -41,6 +41,9 @@
 
     @media (min-width: 810px) {
       text-transform: initial;
+      &.selected {
+        background-color: #f0f2f2;
+      }
     }
 
     &:hover,

@@ -53,6 +53,7 @@ const DashboardMenu = (props) => {
         >
           {menuItems.map((item, index) => (
             <button
+              className={item === selectedItem ? styles.selected : ""}
               key={index}
               onClick={
                 isMatchMedia
