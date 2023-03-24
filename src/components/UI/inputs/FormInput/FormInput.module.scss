@@ -11,40 +11,49 @@
     align-items: center;
   }
 
+  &.space {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
   .label {
     font-family: "RobotoRegular";
     font-size: 1rem;
     margin-right: 0.5rem;
     margin-bottom: 0.25rem;
     color: #3f3f3f;
+
+    &.row {
+      margin: 0;
+    }
+
+    @media (min-width: 810px) {
+      margin-bottom: 0;
+
+      &.dropdown {
+        align-self: flex-start;
+        margin-top: 0.5rem;
+      }
+    }
   }
 
-  .row {
-    margin: 0;
+  .field {
+    width: 18.25rem;
+    height: 2rem;
+    border: 1px solid #c4c4c4;
+    font: inherit;
+    padding-left: 0.5rem;
   }
 
-  &::placeholder {
+  input::placeholder {
     color: #828282;
   }
-}
 
-.field {
-  width: 18.25rem;
-  height: 2rem;
-  border: 1px solid #c4c4c4;
-  font: inherit;
-  padding-left: 0.5rem;
-}
-
-.checkbox {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-  margin-left: 0;
-}
-
-.space {
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  .checkbox {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    margin-left: 0;
+  }
 }

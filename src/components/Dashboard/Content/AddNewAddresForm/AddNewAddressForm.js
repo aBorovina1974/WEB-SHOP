@@ -4,10 +4,10 @@ import formSections from "../../../../data/add-new-address.json";
 import styles from "./AddNewAddressForm.module.scss";
 
 const AddNewAddressForm = () => {
-  const [relatedOptionsIndex, setRelatedOptionsIndex] = useState();
+  const [relatedOptionsId, setRelatedOptionsId] = useState();
 
-  const optionsHandler = (index) => {
-    setRelatedOptionsIndex((prevIndex) => (prevIndex = index));
+  const optionsHandler = (id) => {
+    setRelatedOptionsId((prevId) => (prevId = id));
   };
 
   return (
@@ -28,12 +28,16 @@ const AddNewAddressForm = () => {
                       label: inputItem.label,
                       position: inputItem.position,
                     }}
-                    action={inputItem.action}
                     related={inputItem.related}
+                    action={inputItem.action}
                     options={
                       !inputItem.related
                         ? inputItem.options
-                        : inputItem.options[relatedOptionsIndex]
+                        : relatedOptionsId
+                        ? inputItem.options.find(
+                            (item) => item.country_id === relatedOptionsId
+                          ).regions
+                        : []
                     }
                     onRelated={optionsHandler}
                   />

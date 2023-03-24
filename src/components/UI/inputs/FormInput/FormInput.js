@@ -8,7 +8,7 @@ const FormInput = React.forwardRef((props, ref) => {
       htmlFor={props.input.id}
       className={`${styles.label} ${
         props.input.type === "checkbox" ? styles.row : ""
-      }`}
+      } ${props.input.type === "dropdown" ? styles.dropdown : ""}`}
     >
       {props.input.label}
     </label>
@@ -18,7 +18,7 @@ const FormInput = React.forwardRef((props, ref) => {
     <div
       className={`${styles.input} ${props.className} ${
         props.input.type === "checkbox" ? styles.space : ""
-      }`}
+      } `}
     >
       {props.input.position === "LEFT" && label}
       {props.input.type !== "dropdown" ? (
