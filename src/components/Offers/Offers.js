@@ -1,9 +1,9 @@
 import React from "react";
 import OfferItem from "./Offer/OfferItem";
 import styles from "./Offers.module.scss";
-import chooseLookImg from "../../assets/ChooseLook.png";
-import newStyleImg from "../../assets/NewStyle.png";
-import discountImg from "../../assets/Discount.png";
+import chooseLookImg from "../../assets/main_page_images/ChooseLook.png";
+import newStyleImg from "../../assets/main_page_images/NewStyle.png";
+import discountImg from "../../assets/main_page_images/Discount.png";
 
 const Offers = () => {
   return (

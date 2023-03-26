@@ -8,7 +8,7 @@
   {
     "id": "2",
     "type": "text",
-    "label": "First Name *",
+    "label": "Last Name *",
     "position": "LEFT"
   },
   {

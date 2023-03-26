@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 import styles from "./Slider.module.scss";
-import image1 from "../../assets/image1.jpg";
-import image2 from "../../assets/image2.jpg";
-import image3 from "../../assets/image3.jpg";
-import image4 from "../../assets/image4.jpg";
+import image1 from "../../assets/slider_images/image1.jpg";
+import image2 from "../../assets/slider_images/image2.jpg";
+import image3 from "../../assets/slider_images/image3.jpg";
+import image4 from "../../assets/slider_images/image4.jpg";
 import SliderNavigation from "./SliderNavigation/SliderNavigation";
 
 let totalSlides;
