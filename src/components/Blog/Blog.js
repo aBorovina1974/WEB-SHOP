@@ -11,7 +11,6 @@ const Blog = () => {
         "https://web-shop-7d1b6-default-rtdb.firebaseio.com/blog.json"
       );
       const responseData = await response.json();
-      console.log(responseData);
       const loadedItems = [];
       for (const key in responseData) {
         loadedItems.push({
