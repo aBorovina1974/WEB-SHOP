@@ -1,0 +1,60 @@
+[
+  {
+    "id": "info",
+    "title": "Personal Information",
+    "inputs": [
+      {
+        "id": "1",
+        "type": "text",
+        "label": "First Name *",
+        "position": "LEFT",
+        "required": true
+      },
+      {
+        "id": "2",
+        "type": "text",
+        "label": "Last Name *",
+        "position": "LEFT",
+        "required": true
+      },
+      {
+        "id": "3",
+        "type": "checkbox",
+        "label": "Sign Up for Newsletter",
+        "position": "RIGHT",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "newsletter",
+    "title": "Sign Up for Newsletter",
+    "inputs": [
+      {
+        "id": "4",
+        "type": "email",
+        "label": "Email *",
+        "position": "LEFT",
+        "placeholder": "ante.borovina@example.com",
+        "required": true
+      },
+      {
+        "id": "5",
+        "type": "password",
+        "password_input": "enter",
+        "label": "Password *",
+        "position": "LEFT",
+        "placeholder": "Password",
+        "required": true
+      },
+      {
+        "id": "6",
+        "type": "password",
+        "password_input": "confirm",
+        "label": "Confirm Password *",
+        "position": "LEFT",
+        "required": true
+      }
+    ]
+  }
+]

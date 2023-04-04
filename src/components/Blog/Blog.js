@@ -3,14 +3,22 @@ import styles from "./Blog.module.scss";
 import BlogItem from "./BlogItem/BlogItem";
 
 const Blog = () => {
-  const [blog, setBlog] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
   useEffect(() => {
     const fetchItems = async () => {
       const response = await fetch(
-        "https://web-shop-7d1b6-default-rtdb.firebaseio.com/blog.json"
+        "https://web-shop-database-default-rtdb.firebaseio.com/blogs.json/?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
       );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
       const responseData = await response.json();
+
       const loadedItems = [];
       for (const key in responseData) {
         loadedItems.push({
@@ -22,17 +30,38 @@ const Blog = () => {
           author: responseData[key].author,
         });
       }
-      setBlog(loadedItems);
+      setBlogs(loadedItems);
+      setIsLoading(false);
     };
-    fetchItems();
+
+    fetchItems().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  if (httpError) {
+    return (
+      <section>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.section}>
       <h1 className={styles.title}>Blog</h1>
       <ul className={styles.items}>
-        {blog &&
-          blog.map((blogItem) => (
+        {blogs &&
+          blogs.map((blogItem) => (
             <li key={blogItem.id} className={styles.item}>
               <BlogItem
                 blog={{
