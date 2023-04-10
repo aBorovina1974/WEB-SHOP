@@ -39,26 +39,21 @@
       width: fit-content;
       margin: 1rem auto 0 auto;
 
-      ul {
-        list-style: none;
-        padding: 0;
+      h2 {
+        font-family: "OswaldRegular";
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: #828282;
 
-        h2 {
-          font-family: "OswaldRegular";
-          font-size: 1rem;
-          text-transform: uppercase;
-          color: #828282;
-
-          @media (min-width: 600px) {
-            font-size: 1.125rem;
-            text-transform: initial;
-            color: black;
-          }
+        @media (min-width: 600px) {
+          font-size: 1.125rem;
+          text-transform: initial;
+          color: black;
         }
+      }
 
-        li:first-child h2:first-child {
-          margin-top: 0;
-        }
+      h2:first-child {
+        margin-top: 0;
       }
 
       .submit {

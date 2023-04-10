@@ -1,0 +1,24 @@
+.color-palette {
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .color {
+    margin: 0.312rem;
+    height: 17px;
+    width: 17px;
+    cursor: pointer;
+  }
+
+  .selected {
+    border: 2px #000000 solid;
+    background-color: #FFFFFF;
+  }
+
+  .not-selected {
+    background-color: #FFFFFF;
+  }
+
+}

@@ -1,35 +1,70 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 
-const useFetch = (url) => {
-  const [responseData, setResponseData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const useFetch = () => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [options, setOptions] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  const doFetch = useCallback((options = {}) => {
-    setOptions(options);
+  const request = async (url, method = "GET", body = null, headers = {}) => {
     setIsLoading(true);
-  }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-      return;
-    }
+    try {
+      const response = await fetch(url, { method, body, headers });
+      const data = await response.json();
 
-    const fetchData = async () => {
-      try {
-        const res = await fetch(url, options);
-        const resData = await res.json();
-        setResponseData(resData);
-      } catch (error) {
-        setError(error.message);
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
       }
-      setIsLoading(false);
-    };
-    fetchData();
-  }, [isLoading, options, url]);
 
-  return [{ responseData, error, isLoading }, doFetch];
+      setData(data);
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+      setData(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const get = (url, headers = {}) => {
+    return request(url, "GET", null, headers);
+  };
+
+  const post = (url, body, headers = {}) => {
+    return request(url, "POST", JSON.stringify(body), {
+      ...headers,
+      "Content-Type": "application/json",
+    });
+  };
+
+  const put = (url, body, headers = {}) => {
+    return request(url, "PUT", JSON.stringify(body), {
+      ...headers,
+      "Content-Type": "application/json",
+    });
+  };
+
+  const patch = (url, body, headers = {}) => {
+    return request(url, "PATCH", JSON.stringify(body), {
+      ...headers,
+      "Content-Type": "application/json",
+    });
+  };
+
+  const del = (url, headers = {}) => {
+    return request(url, "DELETE", null, headers);
+  };
+
+  return {
+    data,
+    error,
+    isLoading,
+    get,
+    post,
+    put,
+    patch,
+    del,
+  };
 };
 
 export default useFetch;

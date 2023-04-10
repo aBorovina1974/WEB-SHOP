@@ -4,6 +4,7 @@ import inputItems from "../../../../data/edit-account.json";
 import styles from "./EditAccountForm.module.scss";
 
 const EditAccountForm = (props) => {
+  const onInputHandler = () => {};
   return (
     <>
       <form className={styles.form}>
@@ -19,6 +20,7 @@ const EditAccountForm = (props) => {
                   label: inputItem.label,
                   position: inputItem.position,
                 }}
+                onInput={onInputHandler}
               />
             ))}
         </ul>

@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       {
-        path: "new",
+        path: "signup",
         element: <NewAccountPage />,
       },
       {

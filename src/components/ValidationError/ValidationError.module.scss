@@ -1,0 +1,18 @@
+.validation-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 292px;
+  align-self: flex-end;
+  padding: 0.4rem 0.75rem;
+  background-color: #ffe3e3;
+  @media (max-width: 810px) {
+    width: 300px;
+  }
+}
+
+.message {
+  font-family: "RobotoRegular";
+  font-size: 0.875rem;
+  color: #eb5757;
+}

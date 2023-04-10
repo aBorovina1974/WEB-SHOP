@@ -1,0 +1,84 @@
+$border-color: #c4c4c4;
+$background-color: #ffffff;
+
+%button-shared {
+  width: 328px;
+  height: 50px;
+  font-family: "OswaldMedium";
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.field {
+  width: 328px;
+  height: 44px;
+  border: 1px solid #c4c4c4;
+  outline: none;
+  font-family: "RobotoRegular";
+  font-size: 1rem;
+  padding-left: 1rem;
+  color: #828282;
+  @media (max-width: 810px) {
+    width: 300px;
+  }
+}
+
+.validation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 328px;
+  align-self: flex-end;
+  padding: 0.4rem 0.75rem;
+  background-color: #ffe3e3;
+  @media (max-width: 810px) {
+    width: 300px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 388px;
+  height: 100vh;
+  padding: 2.812rem 1.875rem;
+  background-color: $background-color;
+}
+
+.user {
+  font-family: "RobotoRegular";
+  width: 328px;
+  height: 44px;
+  background: $background-color;
+  border: 1px $border-color solid;
+  margin-bottom: 1.125rem;
+}
+
+//input {
+//  padding-left: 0.875rem;
+//}
+
+.close-icon {
+  cursor: pointer;
+}
+
+.button-signin {
+  @extend %button-shared;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid $border-color;
+}
+
+.button-account {
+  @extend %button-shared;
+  background-color: #000;
+  color: #fff;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: "OswaldRegular";
+  margin: 1.875rem 0 1.875rem 0;
+}

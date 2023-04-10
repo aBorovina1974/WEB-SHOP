@@ -4,7 +4,7 @@ import styles from "./ShoppingCartButton.module.scss";
 
 const ShoppingCartButton = (props) => {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={props.onClick}>
       <span>
         <CartIcon />
       </span>

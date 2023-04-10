@@ -1,0 +1,20 @@
+[
+  {
+    "color": "#FFFFFF",
+    "id": 1,
+    "image_url": "https://example.com/images/mens-tshirt.jpg",
+    "name": "Men's Classic T-Shirt",
+    "price": 19.99,
+    "quantity": 1,
+    "size": "W32"
+  },
+  {
+    "color": "#000000",
+    "id": 2,
+    "image_url": "https://example.com/images/womens-dress.jpg",
+    "name": "Women's Maxi Dress",
+    "price": 49.99,
+    "quantity": 2,
+    "size": "W28"
+  }
+]

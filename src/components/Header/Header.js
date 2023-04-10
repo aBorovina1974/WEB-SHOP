@@ -1,21 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import useMatchMedia from "../../hooks/useMatchMedia";
 import LogoIcon from "../UI/icons/LogoIcon";
 import MainNavigation from "./MainNavigation/MainNavigation";
 import WishListButton from "./WishListButton/WishListButton";
 import ShoppingCartButton from "./ShoppingCartButton/ShoppingCartButton";
+import User from "../User/User";
 import Search from "../Search/Search";
 import styles from "./Header.module.scss";
 import Menu from "./Menu/Menu";
 import SearchButton from "./SearchButton/SearchButton";
 import AccountActions from "./AccountActions/AccountActions";
+import { UserContext } from "../../contexts/user/UserContextProvider";
 import MenuButton from "./MenuButton/MenuButton";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const isMatchMedia = useMatchMedia(810);
   const clickOutsideRef = useRef(null);
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const cartNavigateHandler = () => {
+    navigate("cart");
+  };
 
   const openSearchHandler = () => {
     setIsSearchOpen(true);
@@ -62,7 +71,8 @@ const Header = () => {
       )}
       <AccountActions />
       <WishListButton />
-      <ShoppingCartButton />
+      <ShoppingCartButton onClick={cartNavigateHandler} />
+      {user.email.length > 0 && <User user={user.first_name} />}
     </header>
   );
 };

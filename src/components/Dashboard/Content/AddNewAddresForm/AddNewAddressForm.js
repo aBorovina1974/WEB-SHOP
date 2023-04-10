@@ -10,6 +10,8 @@ const AddNewAddressForm = () => {
     setRelatedOptionsId((prevId) => (prevId = id));
   };
 
+  const onInputHandler = () => {};
+
   return (
     <form className={styles.form}>
       <ul>
@@ -40,6 +42,7 @@ const AddNewAddressForm = () => {
                         : []
                     }
                     onRelated={optionsHandler}
+                    onInput={onInputHandler}
                   />
                 ))}
               </ul>

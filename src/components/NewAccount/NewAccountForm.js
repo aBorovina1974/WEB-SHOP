@@ -1,109 +1,172 @@
 import React, { useReducer } from "react";
 import styles from "./NewAccountForm.module.scss";
-import FormInput from "../UI/inputs/FormInput/FormInput";
-import formSections from "../../data/new-account-form.json";
-// import useFetch from "../../hooks/useFetch";
+import InputField from "../InputField/InputField";
+import useFetch from "../../hooks/useFetch";
+import CheckBoxField from "../CheckBoxField/CheckBoxField";
+import { useNavigate } from "react-router-dom";
+import useNotification from "../../hooks/useNotification";
 
-const items = [];
-const accountFormReducer = (formState, action) => {
-  if (action.type === "FILL") {
-    if (!items.find((item) => item.id === action.inputItem.id)) {
-      items.push(action.inputItem);
-    }
-    formState.inputItems = items;
-    return formState;
+const initialState = {
+  firstName: "",
+  lastName: "",
+  newsletter: false,
+  username: "",
+  password: "",
+  confirmPassword: "",
+  errors: {},
+};
+
+const validatePassword = (password) => {
+  const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+.])(?=.*[a-z]).{8,}$/;
+  return regex.test(password);
+};
+
+const checkError = (state) => {
+  const errors = {};
+  if (!state.firstName) {
+    errors.firstName = "First name is required";
   }
+  if (!state.lastName) {
+    errors.lastName = "Last name is required";
+  }
+  if (!state.username) {
+    errors.username = "Email is required";
+  } else if (!/\S+@\S+\.\S+/.test(state.username)) {
+    errors.username = "Email address is invalid";
+  }
+  if (!state.password) {
+    errors.password = "Password is required";
+  } else if (state.password.length < 8) {
+    errors.password = "Password must be at least 8 characters";
+  } else if (!validatePassword(state.password)) {
+    errors.password =
+      "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character";
+  }
+  if (state.password !== state.confirmPassword) {
+    errors.confirmPassword = "Passwords must match";
+  }
+  return {
+    ...state,
+    errors,
+  };
+};
 
-  if (action.type === "UPDATE") {
-    items[
-      formState.inputItems.findIndex((item) => item.id === action.inputItem.id)
-    ] = action.inputItem;
+const accountFormReducer = (state, action) => {
+  switch (action.type) {
+    case "CHANGE":
+      return {
+        ...state,
+        [action.payload.key]: action.payload.value,
+        errors: {
+          ...state.errors,
+          [action.payload.key]: null,
+        },
+      };
+    case "SUBMIT":
+      const currentState = checkError(state);
+      return { ...currentState };
 
-    formState.inputItems = items;
-    formState.enteredPassword = items.find(
-      (item) => item.password_input === "enter"
-    ).value;
-    formState.confirmPassword = items.find(
-      (item) => item.password_input === "confirm"
-    ).value;
-
-    if (
-      formState.inputItems.every((item) => item.isValid) &&
-      formState.enteredPassword === formState.confirmPassword
-    ) {
-      formState.formIsValid = true;
-    } else {
-      formState.formIsValid = false;
-    }
-
-    return formState;
+    case "SET_ERROR":
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [action.payload.key]: action.payload.value,
+        },
+      };
+    case "RESET":
+      return initialState;
+    default:
+      return state;
   }
 };
 
 const NewAccountForm = () => {
-  const [formState, dispatch] = useReducer(accountFormReducer, {
-    inputItems: [],
-    enteredPassword: null,
-    confirmPassword: null,
-    formIsValid: false,
-  });
+  const [state, dispatch] = useReducer(accountFormReducer, initialState);
+  const navigate = useNavigate();
+  const { isLoading, post } = useFetch();
+  const { showSuccess, showError, notificationComponent } = useNotification();
 
-  const onInputHandler = (inputItem) => {
+  function allKeysNull(obj) {
+    for (const key in obj) {
+      if (obj[key] !== null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const onInputAction = (event) => {
     dispatch({
-      type: formState.inputItems.length === 0 ? "FILL" : "UPDATE",
-      inputItem: inputItem,
+      type: "CHANGE",
+      payload: { key: event.target.name, value: event.target.value },
     });
   };
 
-  const createNewAccount = async (formData) => {
-    const url =
-      "https://web-shop-database-default-rtdb.firebaseio.com/users.json/?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT";
+  const onCheckboxAction = (event) => {
+    dispatch({
+      type: "CHANGE",
+      payload: { key: event.target.name, value: event.target.checked },
+    });
+  };
+
+  function checkUsernameExists(obj, username) {
+    return Object.values(obj).some((user) => user.email === username);
+  }
+
+  const checkUsername = async () => {
     try {
-      let emailExists = false;
-      let response = await fetch(url);
-      let data = await response.json();
+      const response = await fetch(
+        "https://web-shop-database-default-rtdb.firebaseio.com/users.json/?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
+      );
+      const data = await response.json();
       if (data) {
-        emailExists = Object.entries(data).some(
-          (user) => user[1].email === formData.inputItems[3].value
-        );
-      }
-      if (emailExists) {
-        alert(
-          "Failed to create a new user account! The    entered email is already in use!"
-        );
-      } else {
-        response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            first_name: formData.inputItems[0].value,
-            last_name: formData.inputItems[1].value,
-            newsletter: formData.inputItems[2].value,
-            email: formData.inputItems[3].value,
-            password: formData.inputItems[4].value,
-          }),
-        });
-        if (response.ok) {
-          alert("User account has been successfully created!");
-          formState.inputItems.forEach((item) => item.reset());
+        const userExist = checkUsernameExists(data, state.username);
+        if (userExist) {
+          dispatch({
+            type: "SET_ERROR",
+            payload: { key: "username", value: "Username already exists!" },
+          });
+        } else {
+          await saveUser();
         }
+      } else {
+        // No data first user is created
+        await saveUser();
       }
     } catch (error) {
-      console.log(error.message);
+      console.error(error);
+      showError(error);
     }
+  };
+
+  const handleNavigate = () => {
+    navigate("/");
+  };
+
+  const saveUser = async () => {
+    await post(
+      "https://web-shop-database-default-rtdb.firebaseio.com/users.json/?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT",
+      {
+        first_name: state.firstName,
+        last_name: state.lastName,
+        newsletter: state.newsletter,
+        email: state.username,
+        password: state.password,
+      }
+    );
+    dispatch({ type: "RESET" });
+    showSuccess("User created successfully!");
   };
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-
-    if (!formState.formIsValid) {
-      return;
-    }
-    if (formState.formIsValid) {
-      const state = formState;
-      createNewAccount(state);
+    const currentState = checkError(state);
+    if (allKeysNull(currentState.errors)) {
+      // if (allKeysNull(state.errors) && state !== initialState && state.password === state.confirmPassword) {
+      checkUsername();
+    } else {
+      dispatch({ type: "SUBMIT" });
     }
   };
 
@@ -112,51 +175,96 @@ const NewAccountForm = () => {
       <h1 className={styles.title}>Create New Customer Account</h1>
       <div className={styles.border}>
         <form className={styles.form} onSubmit={formSubmitHandler}>
-          <ul className={styles.sections}>
-            {formSections &&
-              formSections.map((section, index) => (
-                <li key={index}>
-                  <h2>{section.title}</h2>
-                  <ul>
-                    {section.inputs.map((inputItem) => (
-                      <FormInput
-                        className={styles.input}
-                        key={inputItem.id}
-                        input={{
-                          id: inputItem.id,
-                          type: inputItem.type,
-                          label: inputItem.label,
-                          position: inputItem.position,
-                          required: inputItem.required,
-                          ...(inputItem.placeholder && {
-                            placeholder: inputItem.placeholder,
-                          }),
-                          ...(inputItem.type === "password" && {
-                            password_input: inputItem.password_input,
-                          }),
-                        }}
-                        onInput={onInputHandler}
-                      />
-                    ))}
-                  </ul>
-                </li>
-              ))}
-          </ul>
+          <h2>Personal Information</h2>
+          <InputField
+            id="firstName"
+            name="firstName"
+            label="First Name"
+            type="text"
+            value={state.firstName}
+            onChange={onInputAction}
+            error={state.errors.firstName}
+            required={true}
+            placeholder={"First Name"}
+          />
+          <InputField
+            id="lastName"
+            name="lastName"
+            label="Last Name"
+            type="text"
+            value={state.lastName}
+            onChange={onInputAction}
+            error={state.errors.lastName}
+            required={true}
+            placeholder={"Last Name"}
+          />
+          <InputField
+            id="username"
+            name="username"
+            label="Username"
+            type="email"
+            value={state.username}
+            onChange={onInputAction}
+            error={state.errors.username}
+            autocomplete={"username"}
+            required={true}
+            placeholder={"Username (Email)"}
+          />
+          <InputField
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            value={state.password}
+            onChange={onInputAction}
+            error={state.errors.password}
+            autocomplete={"new-password"}
+            required={true}
+            placeholder={"Password"}
+          />
+          <InputField
+            id="confirmPassword"
+            name="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            value={state.confirmPassword}
+            onChange={onInputAction}
+            error={state.errors.confirmPassword}
+            autocomplete={"new-password"}
+            required={true}
+            placeholder={"Confirm Password"}
+          />
+          <h2>Sign Up for Newsletter</h2>
+          <CheckBoxField
+            id="newsletter"
+            name="newsletter"
+            label="Sign Up for Newsletter"
+            type="checkbox"
+            value={state.newsletter}
+            onChange={onCheckboxAction}
+            error={state.errors.newsletter}
+            required={true}
+          />
 
           <div className={styles.actions}>
             <button
-              // disabled={formState.formIsValid}
+              disabled={isLoading || !allKeysNull(state.errors)}
               className={styles.submit}
               formNoValidate={true}
             >
               CREATE NEW ACCOUNT
             </button>
-            <button type="button" className={styles.back}>
+            <button
+              type="button"
+              onClick={handleNavigate}
+              className={styles.back}
+            >
               BACK
             </button>
           </div>
         </form>
       </div>
+      {notificationComponent}
     </div>
   );
 };

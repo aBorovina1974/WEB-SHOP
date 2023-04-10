@@ -1,0 +1,49 @@
+$notification-width: 472px;
+
+.notification {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: calc($notification-width - 12rem);
+  transform: translateX(-50%);
+  color: #000;
+  width: 472px;
+  min-height: 70px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5rem);
+}
+
+.notification.hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(0);
+}
+
+.notification.success {
+  background-color: #E3FFE9;
+  color: #27AE60;
+}
+
+.notification.error {
+  background-color: #FFE3E3;
+  color: #EB5757;
+}
+
+.notification .message {
+  text-wrap: normal;
+  padding: 0 1rem;
+  max-width: 400px;
+}
+
+span {
+  cursor: pointer;
+}

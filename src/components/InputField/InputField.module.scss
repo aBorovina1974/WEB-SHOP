@@ -1,0 +1,60 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  .required {
+    color: #eb5757;
+    margin-left: 0.5rem;
+  }
+
+  .input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media (min-width: 810px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .label {
+      font-family: "RobotoRegular";
+      font-size: 1rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.25rem;
+      color: #3f3f3f;
+
+      @media (min-width: 810px) {
+        margin-bottom: 0;
+      }
+    }
+
+    .field {
+      width: 292px;
+      height: 32px;
+      border: 1px solid #c4c4c4;
+      outline: none;
+      font-family: "RobotoRegular";
+      font-size: 1rem;
+      padding-left: 1rem;
+      color: #3f3f3f;
+      @media (max-width: 810px) {
+        width: 300px;
+      }
+    }
+
+    .field:focus {
+      border: 2px solid #c4c4c4;
+    }
+
+    input::placeholder {
+      font-family: "RobotoRegular";
+      font-size: 0.875rem;
+      color: #828282;
+    }
+  }
+}
