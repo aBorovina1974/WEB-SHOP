@@ -8,14 +8,23 @@ import "./fonts/Oswald/Oswald-Light.ttf";
 import "./fonts/Roboto/Roboto-Regular.ttf";
 import "./fonts/Roboto/Roboto-Medium.ttf";
 import "./fonts/Roboto/Roboto-Light.ttf";
-import { UserProvider } from "./contexts/user/UserContextProvider";
 import "./index.scss";
+import { UserProvider } from "./contexts/user/UserContextProvider";
+import { CartProvider } from "./contexts/cart/CartContextProvider";
+import { WishListProvider } from "./contexts/save/WishListContextProvider";
+import { SearchProvider } from "./contexts/search/SearchContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <CartProvider>
+        <WishListProvider>
+          <SearchProvider>
+            <App />
+          </SearchProvider>
+        </WishListProvider>
+      </CartProvider>
     </UserProvider>
   </React.StrictMode>
 );

@@ -3,6 +3,9 @@ import RootLayout from "./pages/Root";
 import HomePage from "./pages/Home";
 import NewAccountPage from "./pages/NewAccout";
 import DashboardPage from "./pages/Dashboard";
+import CatalogPage from "./pages/CatalogPage";
+import CartPage from "./pages/CartPage";
+import Product from "./components/Product/Product";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +20,18 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <DashboardPage />,
+      },
+      {
+        path: "catalog",
+        element: <CatalogPage />,
+      },
+      {
+        path: "product/:id",
+        element: <Product />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
       },
     ],
   },
