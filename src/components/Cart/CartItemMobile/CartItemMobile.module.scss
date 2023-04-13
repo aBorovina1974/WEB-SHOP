@@ -1,0 +1,85 @@
+%font-common {
+  font-family: "OswaldRegular";
+  font-size: 0.75rem;
+}
+
+.item-container {
+  width: 292px;
+  margin: 0 auto;
+  padding: 0.875rem 0;
+  border-bottom: 2px solid #f0f2f2;
+
+  .section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .product-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0 1rem;
+
+      .name {
+        font-family: "OswaldRegular";
+        font-size: 1rem;
+        line-height: 18px;
+      }
+    }
+
+    .label-value {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+
+      .label {
+        @extend %font-common;
+        line-height: 0.75rem;
+        color: #bdbdbd;
+
+        &.price-label {
+          align-self: flex-end;
+        }
+      }
+
+      .value {
+        @extend %font-common;
+        font-weight: 500;
+        color: #3f3f3f;
+
+        &.price-value {
+          line-height: 1.125rem;
+          font-size: 1.125rem;
+          color: black;
+        }
+      }
+    }
+
+    .quantity {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      span:first-child {
+        @extend %font-common;
+        color: #3f3f3f;
+      }
+    }
+  }
+
+  .section:first-child {
+    margin-bottom: 0.875rem;
+  }
+
+  .section:last-child .label-value {
+    margin-bottom: 0.719rem;
+    align-self: flex-end;
+  }
+}

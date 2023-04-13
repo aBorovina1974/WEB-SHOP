@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./CartItemsMobile.module.scss";
+import styles from "./CartItemMobile.module.scss";
 import SelectedColor from "../SelectedColor/SelectedColor";
 import ProductQuantity from "../../Product/ProductQuantity/ProductQuantity";
 import ProductImage from "../../Catalog/CatalogItem/ProductImage";
 import CartActions from "../CartActions/CartActions";
 
-const CartItemsMobile = (props) => {
+const CartItemMobile = (props) => {
   return (
     <div className={styles["cart-items"]}>
       <div className={styles["item-container"]}>
@@ -49,4 +49,4 @@ const CartItemsMobile = (props) => {
   );
 };
 
-export default CartItemsMobile;
+export default CartItemMobile;

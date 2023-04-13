@@ -39,17 +39,16 @@
   @media (min-width: 1000px) {
     padding: 2rem 2.5rem 7.25rem 2.5rem;
     flex-direction: row;
-    gap: 2.375rem;
+    gap: 5rem;
     align-items: flex-start;
   }
   .cart-items-actions {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 1rem;
+
     .cart-items {
       flex-basis: 70%;
-      margin-right: 2.375rem;
 
       .header-row {
         display: flex;
@@ -91,7 +90,6 @@
 
           .price {
             @extend %cart-common;
-            border: 1px solid lightcoral;
           }
 
           .size {
@@ -100,7 +98,6 @@
 
           .total {
             @extend %cart-common;
-            border: 1px solid brown;
           }
         }
       }
@@ -176,11 +173,12 @@
       justify-content: flex-start;
       align-items: center;
       gap: 0.5rem;
+      margin-top: 1rem;
 
       @media (min-width: 1000px) {
         flex-direction: row;
         justify-content: space-between;
-        margin-right: 2.375rem;
+        margin: 0;
       }
 
       .action {

@@ -7,7 +7,7 @@ import { formatPrice } from "../../utils/utils";
 import CartActions from "./CartActions/CartActions";
 import SelectedColor from "./SelectedColor/SelectedColor";
 import useMatchMedia from "../../hooks/useMatchMedia";
-import CartItemsMobile from "./CartItemsMobile/CartItemsMobile";
+import CartItemMobile from "./CartItemMobile/CartItemMobile";
 
 const keys = [
   { key: "name", title: "Product", css: `basis-2/6` },
@@ -112,7 +112,7 @@ const Cart = () => {
             </div>
           ) : (
             cart.map((item) => (
-              <CartItemsMobile
+              <CartItemMobile
                 key={item.id}
                 data={{
                   id: item.id,
