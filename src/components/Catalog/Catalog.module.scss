@@ -9,11 +9,12 @@
 
   .catalog__filter-container {
     display: none;
+    width: 100%;
     @media (min-width: 810px) {
       display: block;
       width: 20%;
       padding: 1.875rem;
-      border-right: 1px solid #C4C4C4;
+      border-right: 1px solid #c4c4c4;
       font-family: "OswaldRegular";
       font-size: 24px;
       flex-direction: row;

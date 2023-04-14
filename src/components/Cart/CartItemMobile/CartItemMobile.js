@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./CartItemMobile.module.scss";
 import SelectedColor from "../SelectedColor/SelectedColor";
-import ProductQuantity from "../../Product/ProductQuantity/ProductQuantity";
 import ProductImage from "../../Catalog/CatalogItem/ProductImage";
 import CartActions from "../CartActions/CartActions";
+import useQuantity from "../../../hooks/useQuantity";
+import { calcAndFormatTotalPrice } from "../../../utils/utils";
 
-const CartItemMobile = (props) => {
+const CartItemMobile = ({ product, handleUpdateCart }) => {
+  const { quantityComponent, quantity } = useQuantity(product);
+
+  useEffect(() => {
+    handleUpdateCart(
+      product,
+      quantity,
+      calcAndFormatTotalPrice(quantity, product.price)
+    );
+  }, [quantity]);
+
   return (
     <div className={styles["cart-items"]}>
       <div className={styles["item-container"]}>
@@ -13,34 +24,38 @@ const CartItemMobile = (props) => {
           <ProductImage
             width={"84px"}
             height={"104px"}
-            productName={props.data.image}
+            productName={product.image}
           />
           <div className={styles["product-info"]}>
-            <div className={styles.name}>{props.data.name}</div>
+            <div className={styles.name}>{product.name}</div>
+            <div className={styles["label-value"]}>
+              <span className={styles.label}>Price:</span>
+              <span className={styles.value}>{product.price} EUR</span>
+            </div>
             <div className={styles["label-value"]}>
               <span className={styles.label}>Size:</span>
-              <span className={styles.value}>{props.data.size}</span>
+              <span className={styles.value}>{product.size}</span>
             </div>
             <div className={styles["label-value"]}>
               <span className={styles.label}>Color:</span>
               <span>
-                <SelectedColor color={props.data.color} />
+                <SelectedColor color={product.color} />
               </span>
             </div>
           </div>
-          <CartActions />
+          <CartActions product={product} />
         </div>
         <div className={styles.section}>
           <div className={styles.quantity}>
             <span>QUANTITY</span>
-            <ProductQuantity prodQuantity={props.data.quantity} />
+            {quantityComponent}
           </div>
           <div className={`${styles["label-value"]} ${styles.alignment}`}>
             <span className={`${styles.label} ${styles["price-label"]}`}>
-              Price:
+              Total:
             </span>
             <span className={`${styles.value} ${styles["price-value"]}`}>
-              {props.data.price}
+              {product.total}
             </span>
           </div>
         </div>

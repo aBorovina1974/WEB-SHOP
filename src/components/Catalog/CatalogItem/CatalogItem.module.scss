@@ -1,4 +1,3 @@
-
 .catalog-item__container {
   display: flex;
   flex-direction: column;
@@ -12,11 +11,11 @@
   }
 
   .catalog-item__category-title {
-    font-family: 'OswaldSemibold';
+    font-family: "OswaldSemibold";
     font-size: 10px;
     line-height: 15px;
     text-transform: uppercase;
-    color: #BDBDBD;
+    color: #bdbdbd;
     @media (min-width: 810px) {
       font-size: 12px;
       line-height: 18px;
@@ -24,7 +23,7 @@
   }
 
   .catalog-item__product-name {
-    font-family: 'OswaldLight';
+    font-family: "OswaldLight";
     font-size: 12px;
     line-height: 18px;
     margin-bottom: 0.25rem;
@@ -36,7 +35,7 @@
   }
 
   .catalog-item__product-price {
-    font-family: 'OswaldMedium';
+    font-family: "OswaldMedium";
     font-size: 14px;
     line-height: 21px;
     margin-bottom: 0.25rem;

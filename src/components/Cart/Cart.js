@@ -1,13 +1,12 @@
 import styles from "./Cart.module.scss";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart/CartContextProvider";
-import ProductImage from "../Catalog/CatalogItem/ProductImage";
-import ProductQuantity from "../Product/ProductQuantity/ProductQuantity";
-import { formatPrice } from "../../utils/utils";
-import CartActions from "./CartActions/CartActions";
-import SelectedColor from "./SelectedColor/SelectedColor";
+import CartItem from "./CartItem/CartItem";
+import NoData from "../NoData/NoData";
 import useMatchMedia from "../../hooks/useMatchMedia";
 import CartItemMobile from "./CartItemMobile/CartItemMobile";
+import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/utils";
 
 const keys = [
   { key: "name", title: "Product", css: `basis-2/6` },
@@ -19,67 +18,40 @@ const keys = [
 ];
 
 const Cart = () => {
-  const isMatchMedia = useMatchMedia(1000);
-  const { cart, updateCart } = useContext(CartContext);
+  const { cart, updateCart, clearCart, calculateTotal } =
+    useContext(CartContext);
+  const isMatchMedia = useMatchMedia(1024);
+  const navigate = useNavigate();
+  const total = formatPrice(calculateTotal());
 
-  const rowCell = (key, item) => {
-    const onQuantityChange = (quantity) => {
-      console.log("onQuantityChange::", quantity);
-      const totalPrice = formatPrice(item["price"], quantity);
-
-      updateCart({
-        id: item["id"],
-        image: item["image"],
-        name: item["name"],
-        price: item["price"],
-        color: item["color"],
-        quantity: item["quantity"],
-        total: totalPrice,
-        size: item["size"],
-      });
-    };
-
-    switch (key) {
-      case "name":
-        return (
-          <div className={styles[key.css]}>
-            <div className={styles["name-container"]}>
-              <ProductImage height={"100px"} productName={item.image} />
-              <div className={styles["name"]}>
-                {item[key]}
-                <SelectedColor color={item["color"]} />
-              </div>
-            </div>
-          </div>
-        );
-
-      case "price":
-        return <div className={styles.price}>{item[key]} Eur</div>;
-
-      case "size":
-        return <div className={styles.size}>{item[key]}</div>;
-
-      case "quantity":
-        return (
-          <ProductQuantity
-            onQuantityChange={onQuantityChange}
-            prodQuantity={item[key]}
-          />
-        );
-
-      case "total":
-        return <div className={styles.total}>{item[key]}</div>;
-
-      case "":
-        return <CartActions />;
-
-      default:
-        return item[key];
-    }
+  const handleUpdateCart = (product, totalQuantity, totalPrice) => {
+    updateCart({
+      ...product,
+      quantity: totalQuantity,
+      total: totalPrice,
+    });
   };
 
-  if (!cart) {
-    return <div>No Data</div>;
+  const handleContinueShopping = () => {
+    navigate("/catalog");
+  };
+
+  const handleClearCart = () => {
+    clearCart();
+  };
+
+  const action = (
+    <button onClick={handleContinueShopping} className={styles.action}>
+      CONTINUE SHOPPING
+    </button>
+  );
+
+  if (!cart || (cart && cart.length === 0)) {
+    return (
+      <>
+        <NoData text={"Cart is empty"} action={action} />
+      </>
+    );
   }
 
   return (
@@ -102,9 +74,12 @@ const Cart = () => {
                 {cart.map((item) => (
                   <div className={styles["table-row"]} key={item.id}>
                     {keys.map((key) => (
-                      <div key={key.key} className={styles[key.css]}>
-                        {rowCell(key.key, item)}
-                      </div>
+                      <CartItem
+                        key={key.key}
+                        columns={key}
+                        product={item}
+                        handleUpdateCart={handleUpdateCart}
+                      />
                     ))}
                   </div>
                 ))}
@@ -114,22 +89,18 @@ const Cart = () => {
             cart.map((item) => (
               <CartItemMobile
                 key={item.id}
-                data={{
-                  id: item.id,
-                  image: item.image,
-                  name: item.name,
-                  price: item.price,
-                  color: item.color,
-                  quantity: item.quantity,
-                  total: item.total,
-                  size: item.size,
-                }}
+                product={item}
+                handleUpdateCart={handleUpdateCart}
               />
             ))
           )}
           <div className={styles.actions}>
-            <button className={styles.action}>CONTINUE SHOPPING</button>
-            <button className={styles.action}>CLEAR SHOPPING CART</button>
+            <button onClick={handleContinueShopping} className={styles.action}>
+              CONTINUE SHOPPING
+            </button>
+            <button onClick={handleClearCart} className={styles.action}>
+              CLEAR SHOPPING CART
+            </button>
           </div>
         </div>
 
@@ -137,11 +108,11 @@ const Cart = () => {
           <div className={styles["order-details"]}>
             <div className={styles.detail}>
               <span className={styles.subtotal}>Subtotal</span>
-              <span className={styles.subtotal}>120.00 EUR</span>
+              <span className={styles.subtotal}>{total}</span>
             </div>
             <div className={styles.detail}>
               <span className={styles.total}>Order Total</span>
-              <span className={styles.total}>120.00 EUR</span>
+              <span className={styles.total}>{total}</span>
             </div>
           </div>
         </div>

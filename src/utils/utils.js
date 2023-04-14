@@ -1,21 +1,44 @@
+export const colors = [
+  "#292A2D",
+  "#F3ECE2",
+  "#24426A",
+  "#18574A",
+  "#666689",
+  "#C2BEB6",
+  "#AAABA7",
+  "#971E34",
+  "#CBA13E",
+  "#73513C",
+  "#DAB1B1",
+  "#2B9FA7",
+];
+
+export const sizes = [
+  "OSFA",
+  "W26",
+  "W27",
+  "W28",
+  "W29",
+  "W30",
+  "W31",
+  "W32",
+  "W33",
+  "W34",
+  "W35",
+  "W36",
+  "W38",
+  "W40",
+  "W42",
+  "W44",
+  "W46",
+  "W48",
+  "W50",
+  "W52",
+];
+
 export const randomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-export const colors = [
-  { id: 1, color: "#292A2D", selected: false },
-  { id: 2, color: "#F3ECE2", selected: false },
-  { id: 3, color: "#24426A", selected: false },
-  { id: 4, color: "#18574A", selected: false },
-  { id: 5, color: "#666689", selected: false },
-  { id: 6, color: "#C2BEB6", selected: false },
-  { id: 7, color: "#AAABA7", selected: false },
-  { id: 8, color: "#971E34", selected: false },
-  { id: 9, color: "#CBA13E", selected: false },
-  { id: 10, color: "#73513C", selected: false },
-  { id: 11, color: "#DAB1B1", selected: false },
-  { id: 12, color: "#2B9FA7", selected: false },
-];
 
 export function getRandomColors(num, selected) {
   const shuffledColors = colors.sort(() => Math.random() - 0.5);
@@ -30,8 +53,50 @@ export function getRandomColors(num, selected) {
   });
 }
 
-export function formatPrice(value, price) {
-  const totalPrice = Math.round(value * price * 100) / 100;
+export function calcAndFormatTotalPrice(quantity, price) {
+  const totalPrice = Math.round(quantity * price * 100) / 100;
   const formattedPrice = totalPrice.toLocaleString();
-  return `${formattedPrice} Eur`;
+  return `${formattedPrice} EUR`;
+}
+
+export function formatPrice(price) {
+  const totalPrice = Math.round(price * 100) / 100;
+  const formattedPrice = totalPrice.toLocaleString();
+  return `${formattedPrice} EUR`;
+}
+
+export function createColorArray(array, defaultSel) {
+  return array.map((color, index) => {
+    return {
+      id: index + 1,
+      color: color,
+      selected: defaultSel === index + 1,
+    };
+  });
+}
+
+export function createSizeArray(array, defaultSel) {
+  return array.map((size, index) => {
+    return {
+      id: index + 1,
+      size: size,
+      selected: defaultSel === index + 1,
+      available: true,
+    };
+  });
+}
+
+export function markAvailableSizes(array, availableSizes) {
+  for (let i = 0; i < array.length; i++) {
+    if (availableSizes.includes(array[i].size)) {
+      array[i].available = true;
+      if (availableSizes[0] === array[i].size) {
+        array[i].selected = true;
+      }
+    } else {
+      array[i].available = false;
+    }
+  }
+
+  return array;
 }

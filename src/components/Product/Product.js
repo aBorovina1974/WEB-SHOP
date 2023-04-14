@@ -1,133 +1,262 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
-import styles from './Product.module.scss'
-import {useParams} from "react-router-dom";
-import {formatPrice, getRandomColors} from "../../utils/utils";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import styles from "./Product.module.scss";
+import { useParams } from "react-router-dom";
+import {
+  calcAndFormatTotalPrice,
+  createColorArray,
+  createSizeArray,
+  markAvailableSizes,
+  sizes,
+} from "../../utils/utils";
 import ColorPalette from "../ColorPalette/ColorPalette";
-import Sizes from "../Sizes/Sizes";
 import ProductGallery from "./ProductGalery/ProductGallery";
-import ProductQuantity from "./ProductQuantity/ProductQuantity";
 import LikeIcon from "../UI/icons/LikeIcon";
-import {CartContext} from "../../contexts/cart/CartContextProvider";
-import {WishListContext} from "../../contexts/save/WishListContextProvider";
+import { CartContext } from "../../contexts/cart/CartContextProvider";
+import { WishListContext } from "../../contexts/save/WishListContextProvider";
+import Spinner from "../Spinner/Spinner";
+import Sizes from "../Sizes/Sizes";
+import MinusIcon from "../UI/icons/MinusIcon";
+import PlusIcon from "../UI/icons/PlusIcon";
+import ProductQuantity from "./ProductQuantity/ProductQuantity";
 
 const Product = () => {
-  const {cart, updateCart} = useContext(CartContext);
-  const {wishList, updateWishList} = useContext(WishListContext);
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState('');
-  const [color, setColor] = useState('');
-
-  const {id} = useParams();
+  const { id } = useParams();
+  const { cart, updateCart } = useContext(CartContext);
+  const { wishList, updateWishList } = useContext(WishListContext);
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [allSizes, setAllSizes] = useState([]);
+  const [allColors, setAllColors] = useState([]);
   const [category, setCategory] = useState(null);
   const [brand, setBrand] = useState(null);
-  const [totalPrice, setTotalPrice] = useState('0 Eur');
-  const colors = getRandomColors(3, 2);
+  const [totalPrice, setTotalPrice] = useState("0 Eur");
+  const [showDetails, setShowDetails] = useState(true);
 
   const getData = useCallback(async (productId) => {
-    const responseProd = await fetch('https://web-shop-database-default-rtdb.firebaseio.com/products.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT');
+    const responseProd = await fetch(
+      "https://web-shop-database-default-rtdb.firebaseio.com/products.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
+    );
     const products = await responseProd.json();
 
     if (products) {
-      const foundProduct = products.find(f => f.id === parseInt(productId))
+      const foundProduct = products.find((f) => f.id === parseInt(productId));
       setProduct(foundProduct);
-      setTotalPrice(`${foundProduct.price.toLocaleString()} Eur`)
+      setTotalPrice(`${foundProduct.price.toLocaleString()} Eur`);
 
       if (foundProduct) {
-        const responseCat = await fetch('https://web-shop-database-default-rtdb.firebaseio.com/categories.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT');
+        const responseCat = await fetch(
+          "https://web-shop-database-default-rtdb.firebaseio.com/categories.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
+        );
         const categories = await responseCat.json();
         if (categories) {
-          setCategory(categories.find(f => f.id === foundProduct.category_id));
+          setCategory(
+            categories.find((f) => f.id === foundProduct.category_id)
+          );
         }
 
-        const responseBrands = await fetch('https://web-shop-database-default-rtdb.firebaseio.com/brands.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT');
+        const responseBrands = await fetch(
+          "https://web-shop-database-default-rtdb.firebaseio.com/brands.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
+        );
         const brands = await responseBrands.json();
         if (brands) {
-          setBrand(brands.find(f => f.id === foundProduct.brand_id));
+          setBrand(brands.find((f) => f.id === foundProduct.brand_id));
+        }
+        if (cart && cart.length > 0) {
+          setQuantity(cart.find((f) => f.id === foundProduct.id).quantity);
         }
       }
     }
-  }, [])
+  }, []);
+
+  const productExists = (arr, productId) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].id === productId) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   useEffect(() => {
     getData(id);
-  }, [id])
+    setAllSizes(createSizeArray(sizes));
+  }, [id]);
 
-  const onSizeChange = (value) => {
-    setSize(value)
-  }
+  useEffect(() => {
+    if (product) {
+      setAllColors(createColorArray(product.colors, 1));
+      setAllSizes(markAvailableSizes(allSizes, product.sizes));
+    }
+  }, [product]);
 
-  const onColorChange = (value) => {
-    setColor(value)
-  }
+  const onSizeChange = (id) => {
+    setAllSizes((prev) =>
+      prev
+        .map((s) => {
+          return {
+            ...s,
+            selected: false,
+          };
+        })
+        .map((size) => {
+          if (size.id === id) {
+            return {
+              ...size,
+              selected: true,
+            };
+          }
+          return size;
+        })
+    );
+  };
 
-  const onQuantityChange = (value) => {
-    setQuantity(value)
-    setTotalPrice(formatPrice(value, product.price));
-  }
+  const onColorChange = (id) => {
+    setAllColors((prev) =>
+      prev
+        .map((p) => {
+          return {
+            ...p,
+            selected: false,
+          };
+        })
+        .map((color) => {
+          if (color.id === id) {
+            return {
+              ...color,
+              selected: true,
+            };
+          }
+          return color;
+        })
+    );
+  };
 
-  if (!product || !category || !brand) {
-    return <div>Loading...</div>;
-  }
+  const onQuantityChange = (type) => {
+    switch (type) {
+      case "+":
+        setQuantity((prev) => {
+          const result = prev + 1;
+          setTotalPrice(calcAndFormatTotalPrice(result, product.price));
+          return result;
+        });
+        break;
+      case "-":
+        setQuantity((prev) => {
+          if (prev > 1) {
+            const result = prev - 1;
+            setTotalPrice(calcAndFormatTotalPrice(result, product.price));
+            return result;
+          }
+          setTotalPrice(calcAndFormatTotalPrice(prev, product.price));
+          return prev;
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
-  const handleAddToCart = () => {
+  const handleUpdateCart = () => {
     updateCart({
-      id: product.id,
-      image: product.image,
-      name: product.name,
-      price: product.price,
-      color: color,
+      ...product,
       quantity: quantity,
       total: totalPrice,
-      size: size
+      color: allColors.find((f) => f.selected === true).color,
+      size: allSizes.find((f) => f.selected === true).size,
     });
   };
 
-  function handleSaveToWishList() {
+  function handleUpdateWishList() {
     updateWishList({
-      id: product.id,
-      name: product.name,
-      image: product.image,
-      price: product.price,
-      color: color,
+      ...product,
       quantity: quantity,
       total: totalPrice,
-      size: size
+      color: allColors.find((f) => f.selected === true).color,
+      size: allSizes.find((f) => f.selected === true).size,
     });
   }
 
+  if (!product || !category || !brand) {
+    return <Spinner />;
+  }
+
   return (
-    <div className={styles['product__container']}>
-      <div className={styles.gallery}>
-        <ProductGallery productName={product.image}/>
-      </div>
-      <div className={styles.basic}>
-        <div className={styles.brand}>{brand.name}</div>
-        <h1 className={styles.title}>{product.name}</h1>
-        <h6 className={styles.subtitle}>Select color</h6>
-        <ColorPalette colors={colors} onColorChange={onColorChange}/>
-        <h6 className={styles.subtitle}>Select size (INCHES)</h6>
-        <Sizes sizeList={product.sizes} onSizeChange={onSizeChange}/>
-        <div className={styles.total}>
-          <div>
-            <h6 className={styles.subtitle}>Quantity</h6>
-            <ProductQuantity onQuantityChange={onQuantityChange}/>
+    <>
+      <div className={styles["product__container"]}>
+        <div className={styles.gallery}>
+          <ProductGallery productName={product.image} />
+        </div>
+        <div className={styles.basic}>
+          <div className={styles.title}>
+            <div className={styles.brand}>{brand.name}</div>
+            <h1 className={styles.name}>{product.name}</h1>
           </div>
-          <div>
-            <h6 className={styles.subtitle}>Price total</h6>
-            <p className={styles.price}>{totalPrice}</p>
+          <h6 className={styles.subtitle}>Select color</h6>
+          <ColorPalette colors={allColors} onColorChange={onColorChange} />
+          <h6 className={styles.subtitle}>Select size (INCHES)</h6>
+          <Sizes sizes={allSizes} onSizeChange={onSizeChange} />
+          <div className={styles.total}>
+            <div>
+              <h6 className={styles.subtitle}>Quantity</h6>
+              <ProductQuantity
+                onQuantityChange={onQuantityChange}
+                quantity={quantity}
+              />
+            </div>
+            <div>
+              <h6 className={styles.subtitle}>Price total</h6>
+              <p className={styles.price}>{totalPrice}</p>
+            </div>
+          </div>
+          <div className={styles.buttons}>
+            <button
+              className={styles.add}
+              type="button"
+              onClick={handleUpdateCart}
+            >
+              {cart && productExists(cart, product.id)
+                ? "Update bag"
+                : "Add to bag"}
+            </button>
+            <button
+              className={styles.save}
+              type="button"
+              onClick={handleUpdateWishList}
+            >
+              <LikeIcon height={12} width={14} />
+              <span className={styles["save-text"]}>
+                {wishList && productExists(wishList, product.id)
+                  ? "Update"
+                  : "Save"}
+              </span>
+            </button>
           </div>
         </div>
-        <div className={styles.buttons}>
-          <button className={styles.add} type="button"
-                  onClick={handleAddToCart}>{cart && cart.length > 0 ? 'Update bag' : 'Add to bag'}</button>
-          <button className={styles.save} type="button" onClick={handleSaveToWishList}>
-            <LikeIcon height={12} width={14}/>
-            <span className={styles['save-text']}>{wishList && wishList.length > 0 ? 'Update' : 'Save'}</span>
-          </button>
+      </div>
+      <div className={styles["details__container"]}>
+        <div className={styles.details}>
+          <div className={styles.title}>
+            <h2>Details</h2>
+            <button
+              className={styles.button}
+              onClick={() => setShowDetails((prev) => !prev)}
+            >
+              {!showDetails ? <PlusIcon /> : <MinusIcon />}
+            </button>
+          </div>
+          <div className={showDetails ? styles.content : styles["no-content"]}>
+            <hr className={styles.divider} />
+            <h6 className={styles.subtitle}>About product</h6>
+            <p className={styles.description}>{product.description}</p>
+            <h6 className={styles.subtitle}>Shipping</h6>
+            <p className={styles.description}>
+              {product.shipping.description} {product.shipping.method}{" "}
+              {product.shipping.price} Eur
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
