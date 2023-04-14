@@ -1,5 +1,5 @@
 .section {
-  width: 100vw;
+  //width: 100vw;
   background-color: #f8f9fb;
   padding: 0.6875rem;
 }
@@ -7,23 +7,21 @@
 .title {
   font-family: "OswaldRegular";
   font-size: 1.5rem;
+  line-height: 2.375rem;
   margin-top: 0;
 }
 
 .items {
-  display: grid;
-  gap: 0.6875rem;
-  grid-template-columns: repeat(auto-fit, minmax(18.25rem, 1fr));
+  display: flex;
+  flex-direction: row;
+  gap: 1.875rem;
+  overflow: auto;
+  white-space: nowrap;
   list-style: none;
   padding: 0;
-  margin: 0;
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1rem;
-  background-color: white;
+  margin-bottom: calc(2.875rem - 11px);
+  @media (max-width: 810px) {
+    //white-space: normal;
+    flex-wrap: wrap;
+  }
 }

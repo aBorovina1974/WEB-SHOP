@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Blog.module.scss";
 import BlogItem from "./BlogItem/BlogItem";
+import Spinner from "../Spinner/Spinner";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
   useEffect(() => {
@@ -31,21 +31,15 @@ const Blog = () => {
         });
       }
       setBlogs(loadedItems);
-      setIsLoading(false);
     };
 
     fetchItems().catch((error) => {
-      setIsLoading(false);
       setHttpError(error.message);
     });
   }, []);
 
-  if (isLoading) {
-    return (
-      <section>
-        <p>Loading...</p>
-      </section>
-    );
+  if (!blogs) {
+    return <Spinner />;
   }
 
   if (httpError) {
@@ -59,22 +53,20 @@ const Blog = () => {
   return (
     <section className={styles.section}>
       <h1 className={styles.title}>Blog</h1>
-      <ul className={styles.items}>
-        {blogs &&
-          blogs.map((blogItem) => (
-            <li key={blogItem.id} className={styles.item}>
-              <BlogItem
-                blog={{
-                  type: blogItem.type,
-                  title: blogItem.title,
-                  text: blogItem.text,
-                  date: blogItem.created,
-                  author: blogItem.author,
-                }}
-              />
-            </li>
-          ))}
-      </ul>
+      <div className={styles.items}>
+        {blogs.map((blogItem) => (
+          <BlogItem
+            key={blogItem.id}
+            blog={{
+              type: blogItem.type,
+              title: blogItem.title,
+              text: blogItem.text,
+              date: blogItem.created,
+              author: blogItem.author,
+            }}
+          />
+        ))}
+      </div>
     </section>
   );
 };
