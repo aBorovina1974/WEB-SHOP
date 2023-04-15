@@ -1,13 +1,12 @@
 import React from "react";
-import styles from './ProductGallery.module.scss'
-import ProductImage from "../../Catalog/CatalogItem/ProductImage";
+import styles from "./ProductGallery.module.scss";
+import ProductImage from "./ProductImage";
 
-const ProductGallery = ({productName}) => {
-
+const ProductGallery = ({ productName }) => {
   return (
-    <div className={styles['product__gallery-container']}>
+    <div className={styles["product__gallery-container"]}>
       <div className={styles.image}>
-        <ProductImage productName={productName}/>
+        <ProductImage productName={productName} />
       </div>
     </div>
   );

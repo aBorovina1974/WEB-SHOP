@@ -26,7 +26,7 @@ const Brands = () => {
         <ul className={styles.brands}>
           {brandsLogos.map((item) => (
             <li key={item.id}>
-              <BrandItem logo={item.logo} />
+              <BrandItem idBrand={item.id} logo={item.logo} />
             </li>
           ))}
         </ul>

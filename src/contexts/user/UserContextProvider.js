@@ -14,7 +14,6 @@ const initUser = {
   first_name: "",
   last_name: "",
   newsletter: false,
-  password: "",
 };
 
 const UserProvider = ({ children }) => {

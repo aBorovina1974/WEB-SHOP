@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./CartItemMobile.module.scss";
 import SelectedColor from "../SelectedColor/SelectedColor";
-import ProductImage from "../../Catalog/CatalogItem/ProductImage";
+import ProductImage from "../../Product/ProductGalery/ProductImage";
 import CartActions from "../CartActions/CartActions";
 import useQuantity from "../../../hooks/useQuantity";
 import { calcAndFormatTotalPrice } from "../../../utils/utils";

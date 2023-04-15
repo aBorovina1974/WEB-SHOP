@@ -1,0 +1,64 @@
+.details__container {
+  .filter {
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 1rem 0.625rem 1rem 0.625rem;
+    margin: 0;
+    @media (max-width: 768px) {
+      border: 1px solid #C4C4C4;
+      padding: 0.825rem 0.625rem 0.825rem 0.625rem;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      font-size: 1.5rem;
+
+
+      h2 {
+        margin: 0;
+        @media (max-width: 768px) {
+          font-family: "OswaldMedium";
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          color: #3F3F3F;
+        }
+      }
+
+      .button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+    }
+
+    .reset {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      margin: 0;
+      padding: 0;
+      color: #3F3F3F;
+    }
+
+    .content {
+      .filter-title {
+        font-family: "OswaldRegular";
+        font-size: 1.5rem;
+        @media (max-width: 768px) {
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          color: #3F3F3F;
+        }
+      }
+    }
+
+    .no-content {
+      display: none;
+    }
+
+  }
+}

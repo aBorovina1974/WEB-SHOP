@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import styles from "./Product.module.scss";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   calcAndFormatTotalPrice,
   createColorArray,
@@ -31,6 +31,35 @@ const Product = () => {
   const [brand, setBrand] = useState(null);
   const [totalPrice, setTotalPrice] = useState("0 Eur");
   const [showDetails, setShowDetails] = useState(true);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    getData(id);
+    setAllSizes(createSizeArray(sizes));
+  }, [id]);
+
+  useEffect(() => {
+    if (product) {
+      setAllColors(createColorArray(product.colors, 1));
+      setAllSizes(markAvailableSizes(allSizes, product.sizes));
+    }
+  }, [product]);
+
+  useEffect(() => {
+    if (
+      product &&
+      cart &&
+      cart.length > 0 &&
+      isProductInCartExists(cart, product.id)
+    ) {
+      handleUpdateCart();
+    }
+  }, [quantity, totalPrice, allSizes, allColors]);
 
   const getData = useCallback(async (productId) => {
     const responseProd = await fetch(
@@ -61,33 +90,67 @@ const Product = () => {
         if (brands) {
           setBrand(brands.find((f) => f.id === foundProduct.brand_id));
         }
-        if (cart && cart.length > 0) {
-          setQuantity(cart.find((f) => f.id === foundProduct.id).quantity);
+
+        if (
+          cart &&
+          cart.length > 0 &&
+          isProductInCartExists(cart, foundProduct.id)
+        ) {
+          const selectedCart = cart.find((f) => f.id === foundProduct.id);
+          if (selectedCart) {
+            setQuantity(selectedCart.quantity);
+
+            setAllSizes((prev) =>
+              prev
+                .map((s) => {
+                  return {
+                    ...s,
+                    selected: false,
+                  };
+                })
+                .map((size) => {
+                  if (size.size === selectedCart.size) {
+                    return {
+                      ...size,
+                      selected: true,
+                    };
+                  }
+                  return size;
+                })
+            );
+
+            setAllColors((prev) =>
+              prev
+                .map((p) => {
+                  return {
+                    ...p,
+                    selected: false,
+                  };
+                })
+                .map((color) => {
+                  if (color.color === selectedCart.color) {
+                    return {
+                      ...color,
+                      selected: true,
+                    };
+                  }
+                  return color;
+                })
+            );
+          }
         }
       }
     }
   }, []);
 
-  const productExists = (arr, productId) => {
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i].id === productId) {
+  const isProductInCartExists = (cartArr, productId) => {
+    for (let i = 0; i < cartArr.length; i++) {
+      if (cartArr[i].id === productId) {
         return true;
       }
     }
     return false;
   };
-
-  useEffect(() => {
-    getData(id);
-    setAllSizes(createSizeArray(sizes));
-  }, [id]);
-
-  useEffect(() => {
-    if (product) {
-      setAllColors(createColorArray(product.colors, 1));
-      setAllSizes(markAvailableSizes(allSizes, product.sizes));
-    }
-  }, [product]);
 
   const onSizeChange = (id) => {
     setAllSizes((prev) =>
@@ -158,23 +221,33 @@ const Product = () => {
 
   const handleUpdateCart = () => {
     updateCart({
-      ...product,
+      id: product.id,
+      name: product.name,
+      image: product.image,
+      price: product.price,
       quantity: quantity,
       total: totalPrice,
-      color: allColors.find((f) => f.selected === true).color,
-      size: allSizes.find((f) => f.selected === true).size,
+      color: allColors.find((f) => f.selected === true)?.color,
+      size: allSizes.find((f) => f.selected === true)?.size,
     });
   };
 
   function handleUpdateWishList() {
     updateWishList({
-      ...product,
+      id: product.id,
+      name: product.name,
+      image: product.image,
+      price: product.price,
       quantity: quantity,
       total: totalPrice,
-      color: allColors.find((f) => f.selected === true).color,
-      size: allSizes.find((f) => f.selected === true).size,
+      color: allColors.find((f) => f.selected === true)?.color,
+      size: allSizes.find((f) => f.selected === true)?.size,
     });
   }
+
+  const goToCart = () => {
+    navigate("/cart");
+  };
 
   if (!product || !category || !brand) {
     return <Spinner />;
@@ -209,15 +282,19 @@ const Product = () => {
             </div>
           </div>
           <div className={styles.buttons}>
-            <button
-              className={styles.add}
-              type="button"
-              onClick={handleUpdateCart}
-            >
-              {cart && productExists(cart, product.id)
-                ? "Update bag"
-                : "Add to bag"}
-            </button>
+            {cart && isProductInCartExists(cart, product.id) ? (
+              <button className={styles.add} type="button" onClick={goToCart}>
+                Go to cart
+              </button>
+            ) : (
+              <button
+                className={styles.add}
+                type="button"
+                onClick={handleUpdateCart}
+              >
+                Add to bag
+              </button>
+            )}
             <button
               className={styles.save}
               type="button"
@@ -225,7 +302,7 @@ const Product = () => {
             >
               <LikeIcon height={12} width={14} />
               <span className={styles["save-text"]}>
-                {wishList && productExists(wishList, product.id)
+                {wishList && isProductInCartExists(wishList, product.id)
                   ? "Update"
                   : "Save"}
               </span>

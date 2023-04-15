@@ -3,7 +3,6 @@ import ProductQuantity from "../components/Product/ProductQuantity/ProductQuanti
 
 const useQuantity = (product) => {
   const [quantity, setQuantity] = useState(product ? product.quantity : 1);
-  const [notificationKey, setNotificationKey] = useState(0);
 
   const onQuantityChange = (type) => {
     switch (type) {
@@ -23,13 +22,11 @@ const useQuantity = (product) => {
       default:
         break;
     }
-    setNotificationKey((prevKey) => prevKey + 1);
   };
 
   const quantityComponent = useMemo(
     () => (
       <ProductQuantity
-        key={notificationKey}
         onQuantityChange={onQuantityChange}
         quantity={quantity}
       />

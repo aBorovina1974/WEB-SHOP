@@ -1,28 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import styles from "./Catalog.module.scss";
 import CatalogItem from "./CatalogItem/CatalogItem";
-import ColorPalette from "../ColorPalette/ColorPalette";
-import {
-  colors,
-  createColorArray,
-  createSizeArray,
-  sizes,
-} from "../../utils/utils";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../contexts/search/SearchContextProvider";
-import Sizes from "../Sizes/Sizes";
 import Spinner from "../Spinner/Spinner";
+import { useLocation } from "react-router-dom";
+import FilterComponent from "./FilterComponent/FilterComponent";
+import NoData from "../NoData/NoData";
 
 const Catalog = () => {
-  const { search } = useContext(SearchContext);
-  const [allSizes, setAllSizes] = useState([]);
-  const [allColors, setAllColors] = useState([]);
-  const { data: products, get: getProducts, error: errorProducts } = useFetch();
-  const {
-    data: categories,
-    get: getCategories,
-    error: errorCategories,
-  } = useFetch();
+  const { search, selectedBrands, colorFilter, sizeFilter } =
+    useContext(SearchContext);
+
+  const { pathname } = useLocation();
+  const { data: brands, get: getBrands } = useFetch();
+  const { data: products, get: getProducts } = useFetch();
+  const { data: categories, get: getCategories } = useFetch();
+
+  // Automatically scrolls to top whenever pathname changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     getProducts(
@@ -32,53 +30,55 @@ const Catalog = () => {
       "https://web-shop-database-default-rtdb.firebaseio.com/categories.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
     );
 
-    setAllSizes(createSizeArray(sizes));
-    setAllColors(createColorArray(colors));
+    getBrands(
+      "https://web-shop-database-default-rtdb.firebaseio.com/brands.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
+    );
   }, []);
 
-  const onColorChange = () => {
-    console.log("color change");
-  };
+  const filteredProducts = useMemo(() => {
+    let result = products;
+    if (search) {
+      result = result?.filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+    if (selectedBrands && selectedBrands.length > 0) {
+      result = result?.filter((product) =>
+        selectedBrands.includes(product.brand_id)
+      );
+    }
+    if (colorFilter) {
+      result = result?.filter((product) =>
+        product.colors.includes(colorFilter)
+      );
+    }
+    if (sizeFilter) {
+      result = result?.filter((product) => product.sizes.includes(sizeFilter));
+    }
+    return result;
+  }, [products, search, selectedBrands, colorFilter, sizeFilter]);
 
-  const onSizeChange = () => {
-    console.log("size change");
-  };
-
-  if (errorProducts || errorCategories) {
-    return (
-      <div style={{ marginTop: "5rem" }}>
-        Error...{errorProducts}
-        {errorCategories}
-      </div>
-    );
-  }
-
-  if (!products || !categories) {
+  if (!products || !categories || !brands || !filteredProducts) {
     return <Spinner />;
   }
 
   return (
     <div className={styles["catalog__container"]}>
       <div className={styles["catalog__filter-container"]}>
-        <p>Color</p>
-        <div className="catalog__color-palette">
-          <ColorPalette onColorChange={onColorChange} colors={allColors} />
-        </div>
-        <p>Size</p>
-        <div className="catalog__color-palette">
-          <Sizes onSizeChange={onSizeChange} sizes={allSizes} />
-        </div>
+        <FilterComponent brands={brands} />
       </div>
       <div className={styles["catalog__catalog-container"]}>
-        {products
-          .filter((f) => f.name.toLowerCase().includes(search.toLowerCase()))
-          .map((product) => (
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
             <CatalogItem
               key={product.id}
               product={product}
               category={categories.find((f) => f.id === product.category_id)}
             />
-          ))}
+          ))
+        ) : (
+          <NoData />
+        )}
       </div>
     </div>
   );

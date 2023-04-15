@@ -3,47 +3,47 @@
   flex-direction: column;
 
   img {
-    max-width: 139px;
-    @media (min-width: 810px) {
-      max-width: 344px;
-      margin-bottom: 0.875rem;
+    max-height: 450px;
+    margin-bottom: 0.875rem;
+    @media (max-width: 768px) {
+      max-height: 215px;
     }
   }
 
   .catalog-item__category-title {
     font-family: "OswaldSemibold";
-    font-size: 10px;
-    line-height: 15px;
+    font-size: 12px;
+    line-height: 18px;
     text-transform: uppercase;
     color: #bdbdbd;
-    @media (min-width: 810px) {
-      font-size: 12px;
-      line-height: 18px;
+    @media (max-width: 768px) {
+      line-height: 15px;
+      font-size: 10px;
     }
   }
 
   .catalog-item__product-name {
     font-family: "OswaldLight";
-    font-size: 12px;
-    line-height: 18px;
-    margin-bottom: 0.25rem;
-    @media (min-width: 810px) {
-      font-size: 18px;
-      line-height: 27px;
-      margin-bottom: 1.125rem;
+    font-size: 18px;
+    line-height: 27px;
+    margin-bottom: 1.125rem;
+    @media (max-width: 768px) {
+      font-size: 12px;
+      line-height: 18px;
+      margin-bottom: 0.25rem;
     }
   }
 
   .catalog-item__product-price {
     font-family: "OswaldMedium";
-    font-size: 14px;
-    line-height: 21px;
-    margin-bottom: 0.25rem;
 
-    @media (min-width: 810px) {
-      font-size: 22px;
-      line-height: 33px;
-      margin-bottom: 1.125rem;
+    font-size: 22px;
+    line-height: 33px;
+    margin-bottom: 1.125rem;
+    @media (max-width: 768px) {
+      font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 0.25rem;
     }
   }
 }

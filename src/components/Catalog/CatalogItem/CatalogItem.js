@@ -1,12 +1,33 @@
-import React from "react";
-import ProductImage from "./ProductImage";
+import React, { useState } from "react";
+import ProductImage from "../../Product/ProductGalery/ProductImage";
 import styles from "./CatalogItem.module.scss";
 import ColorPalette from "../../ColorPalette/ColorPalette";
 import { Link } from "react-router-dom";
 import { createColorArray } from "../../../utils/utils";
 
 const CatalogItem = ({ product, category }) => {
-  const colors = createColorArray(product.colors, 1);
+  const [colors, setColors] = useState(createColorArray(product.colors, 1));
+
+  const onColorChange = (id) => {
+    setColors((prev) =>
+      prev
+        .map((p) => {
+          return {
+            ...p,
+            selected: false,
+          };
+        })
+        .map((color) => {
+          if (color.id === id) {
+            return {
+              ...color,
+              selected: true,
+            };
+          }
+          return color;
+        })
+    );
+  };
 
   return (
     <div className={styles["catalog-item__container"]}>
@@ -22,7 +43,7 @@ const CatalogItem = ({ product, category }) => {
       <span className={styles["catalog-item__product-price"]}>
         {product.price} EUR
       </span>
-      <ColorPalette colors={colors} onColorChange={console.log} />
+      <ColorPalette colors={colors} onColorChange={onColorChange} />
     </div>
   );
 };

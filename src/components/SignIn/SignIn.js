@@ -38,7 +38,14 @@ export function SignIn({ handleSignInShow }) {
           setError((prev) => ({ ...prev, password: "Password is not valid!" }));
         } else {
           if (foundUser && matchPassword) {
-            setUserCookie(JSON.stringify(foundUser));
+            setUserCookie(
+              JSON.stringify({
+                email: foundUser.email,
+                first_name: foundUser.first_name,
+                last_name: foundUser.last_name,
+                newsletter: foundUser.newsletter,
+              })
+            );
             setUser((prev) => ({
               ...prev,
               ...foundUser,

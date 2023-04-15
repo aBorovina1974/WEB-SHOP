@@ -4,14 +4,32 @@ const SearchContext = createContext(null);
 
 const SearchProvider = ({ children }) => {
   const [search, setSearch] = useState("");
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [colorFilter, setColorFilter] = useState(null);
+  const [sizeFilter, setSizeFilter] = useState(null);
 
   // memoize the full context value
   const contextValue = useMemo(
     () => ({
       search,
       setSearch,
+      selectedBrands,
+      setSelectedBrands,
+      colorFilter,
+      setColorFilter,
+      sizeFilter,
+      setSizeFilter,
     }),
-    [search, setSearch]
+    [
+      search,
+      setSearch,
+      selectedBrands,
+      setSelectedBrands,
+      colorFilter,
+      setColorFilter,
+      sizeFilter,
+      setSizeFilter,
+    ]
   );
 
   return (

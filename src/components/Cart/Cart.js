@@ -1,11 +1,11 @@
 import styles from "./Cart.module.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../contexts/cart/CartContextProvider";
 import CartItem from "./CartItem/CartItem";
 import NoData from "../NoData/NoData";
 import useMatchMedia from "../../hooks/useMatchMedia";
 import CartItemMobile from "./CartItemMobile/CartItemMobile";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/utils";
 
 const keys = [
@@ -23,6 +23,11 @@ const Cart = () => {
   const isMatchMedia = useMatchMedia(1024);
   const navigate = useNavigate();
   const total = formatPrice(calculateTotal());
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const handleUpdateCart = (product, totalQuantity, totalPrice) => {
     updateCart({

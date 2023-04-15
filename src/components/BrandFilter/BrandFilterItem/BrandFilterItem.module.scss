@@ -1,0 +1,23 @@
+$checkbox-text-color: #3f3f3f;
+
+.check-box {
+  color: $checkbox-text-color;
+  font-family: "RobotoRegular";
+  font-size: 14px;
+  line-height: 32px;
+  text-transform: uppercase;
+
+  .label {
+    margin-left: 0.5rem;
+  }
+
+  input[type="checkbox"] {
+    accent-color: black;
+    mix-blend-mode: multiply;
+  }
+
+  span,
+  input {
+    cursor: pointer;
+  }
+}

@@ -1,5 +1,5 @@
 import styles from "./CartItem.module.scss";
-import ProductImage from "../../Catalog/CatalogItem/ProductImage";
+import ProductImage from "../../Product/ProductGalery/ProductImage";
 import useQuantity from "../../../hooks/useQuantity";
 import { useEffect } from "react";
 import { calcAndFormatTotalPrice } from "../../../utils/utils";
