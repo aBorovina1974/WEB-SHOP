@@ -2,14 +2,47 @@ import React, { useContext } from "react";
 import { WishListContext } from "../../contexts/save/WishListContextProvider";
 import styles from "./WishList.module.scss";
 import WishListItem from "./WishListItem/WishListItem";
+import NoData from "../NoData/NoData";
+import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../contexts/cart/CartContextProvider";
 
 const WishList = () => {
   const { wishList, updateWishList, removeWishList, clearWishList } =
     useContext(WishListContext);
-  //test
+
+  const { updateCart } = useContext(CartContext);
+
+  const handleAddToCart = (product) => {
+    updateCart({ ...product });
+  };
+
+  const navigate = useNavigate();
+
   const handleUpdateWishlist = (product) => {
     updateWishList({ ...product });
   };
+
+  const handleContinueShopping = () => {
+    navigate("/catalog");
+  };
+
+  const handleClearWishList = () => {
+    clearWishList();
+  };
+
+  const action = (
+    <button onClick={handleContinueShopping} className={styles.action}>
+      CONTINUE SHOPPING
+    </button>
+  );
+
+  if (!wishList || (wishList && wishList.length === 0)) {
+    return (
+      <>
+        <NoData text={"Wish list is empty"} action={action} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -23,12 +56,15 @@ const WishList = () => {
               key={item.id}
               product={item}
               handleUpdateWishlist={handleUpdateWishlist}
+              handleAddToCart={handleAddToCart}
             />
           ))}
         </div>
         <div className={styles.actions}>
           <button className={styles.action}>SHARE WISH LIST</button>
-          <button className={styles.action}>CLEAR WISH LIST</button>
+          <button className={styles.action} onClick={handleClearWishList}>
+            CLEAR WISH LIST
+          </button>
           <button className={styles.action}>ADD ALL TO CART</button>
         </div>
       </div>

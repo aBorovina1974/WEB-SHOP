@@ -11,6 +11,7 @@ const CartActions = ({ product }) => {
   const { updateWishList } = useContext(WishListContext);
   const { removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
+
   const handleEditProduct = () => {
     navigate(`/product/${product.id}`);
   };

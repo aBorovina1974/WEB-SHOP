@@ -51,7 +51,7 @@ const WishListProvider = ({ children }) => {
     dispatch({ type: "update", payload: wishList });
   };
 
-  const removeWishList = (wishList) => {
+  const removeFromWishList = (wishList) => {
     dispatch({ type: "remove", payload: wishList });
   };
 
@@ -61,7 +61,12 @@ const WishListProvider = ({ children }) => {
 
   return (
     <WishListContext.Provider
-      value={{ wishList: state, updateWishList, removeWishList, clearWishList }}
+      value={{
+        wishList: state,
+        updateWishList,
+        removeFromWishList,
+        clearWishList,
+      }}
     >
       {children}
     </WishListContext.Provider>
