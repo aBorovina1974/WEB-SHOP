@@ -6,7 +6,7 @@ import WishListItem from "./WishListItem/WishListItem";
 const WishList = () => {
   const { wishList, updateWishList, removeWishList, clearWishList } =
     useContext(WishListContext);
-
+  //test
   const handleUpdateWishlist = (product) => {
     updateWishList({ ...product });
   };
