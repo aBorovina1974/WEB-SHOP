@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: center;
+
+  .action {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+  }
+}

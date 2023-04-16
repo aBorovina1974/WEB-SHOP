@@ -1,0 +1,48 @@
+.title {
+  width: 292px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  border-bottom: 2px solid #c4c4c4;
+
+  @media (min-width: 1024px) {
+    justify-content: center;
+    border: none;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #c4c4c4;
+  padding: 2rem;
+
+  .items {
+    width: 664px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.action {
+  width: 160px;
+  height: 32px;
+  background-color: #f0f2f2;
+  border: 2px solid #c4c4c4;
+  font-family: "OswaldRegular";
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #828282;
+  cursor: pointer;
+}
