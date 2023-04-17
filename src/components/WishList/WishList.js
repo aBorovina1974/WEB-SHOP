@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/cart/CartContextProvider";
 
 const WishList = () => {
-  const { wishList, updateWishList, removeWishList, clearWishList } =
+  const { wishList, updateWishList, removeFromWishList, clearWishList } =
     useContext(WishListContext);
-
   const { updateCart } = useContext(CartContext);
 
   const handleAddToCart = (product) => {
     updateCart({ ...product });
+    removeFromWishList({ ...product });
   };
 
   const navigate = useNavigate();
@@ -28,6 +28,14 @@ const WishList = () => {
 
   const handleClearWishList = () => {
     clearWishList();
+  };
+
+  const handleAddAllToCart = () => {
+    for (let i = 0; i < wishList.length; i++) {
+      updateCart({ ...wishList[i] });
+    }
+    clearWishList();
+    navigate("/cart");
   };
 
   const action = (
@@ -65,7 +73,9 @@ const WishList = () => {
           <button className={styles.action} onClick={handleClearWishList}>
             CLEAR WISH LIST
           </button>
-          <button className={styles.action}>ADD ALL TO CART</button>
+          <button onClick={handleAddAllToCart} className={styles.action}>
+            ADD ALL TO CART
+          </button>
         </div>
       </div>
     </>

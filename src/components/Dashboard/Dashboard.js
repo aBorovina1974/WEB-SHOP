@@ -4,12 +4,15 @@ import EditAccountForm from "../Dashboard/Content/EditAccountForm/EditAccountFor
 import styles from "./Dashboard.module.scss";
 import DashboardMenu from "./DashboardMenu/DashboardMenu";
 import AddNewAddressForm from "./Content/AddNewAddresForm/AddNewAddressForm";
+import WorkInProgress from "../../WorkInProgress";
 
 const Dashboard = (props) => {
   const contentItems = [
     { content: <DashboardItems />, title: "My Dashboard" },
     { content: <EditAccountForm />, title: "Edit Account Information" },
     { content: <AddNewAddressForm />, title: "Add New Address" },
+    { content: <WorkInProgress /> },
+    { content: <WorkInProgress /> },
   ];
   const [content, setContent] = useState(contentItems[0]);
 

@@ -9,7 +9,6 @@ const DashboardMenu = (props) => {
     "Account Information",
     "Address Book",
     "My Orders",
-    "My Wishlist",
     "Newsletter Subscriptions",
   ];
   const isMatchMedia = useMatchMedia(810);

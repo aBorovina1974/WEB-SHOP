@@ -30,7 +30,11 @@ const Cart = () => {
   }, [pathname]);
 
   const handleUpdateCart = (product, totalQuantity, totalPrice) => {
-    updateCart({ ...product });
+    updateCart({
+      ...product,
+      quantity: totalQuantity,
+      total: totalPrice,
+    });
   };
 
   const handleContinueShopping = () => {

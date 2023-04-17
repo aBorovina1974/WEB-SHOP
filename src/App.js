@@ -7,6 +7,9 @@ import CatalogPage from "./pages/CatalogPage";
 import CartPage from "./pages/CartPage";
 import Product from "./components/Product/Product";
 import WishListPage from "./pages/WishList";
+import Protected from "./Protected";
+import WorkInProgress from "./WorkInProgress";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <DashboardPage />,
+        element: (
+          <PrivateRoutes>
+            <DashboardPage />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "catalog",
@@ -37,6 +44,18 @@ const router = createBrowserRouter([
       {
         path: "wishlist",
         element: <WishListPage />,
+      },
+      {
+        path: "protected",
+        element: <Protected />,
+      },
+      {
+        path: "sale",
+        element: <WorkInProgress />,
+      },
+      {
+        path: "contact",
+        element: <WorkInProgress />,
       },
     ],
   },
