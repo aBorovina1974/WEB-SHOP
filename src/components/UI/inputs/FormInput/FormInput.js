@@ -71,7 +71,6 @@ const FormInput = React.forwardRef((props, ref) => {
             onChange={valueChangeHandler}
             onBlur={inputBlurHandler}
             value={value}
-            // disabled={props.disabled}
             {...props.input}
             className={`${
               props.input.type !== "checkbox" ? styles.field : styles.checkbox

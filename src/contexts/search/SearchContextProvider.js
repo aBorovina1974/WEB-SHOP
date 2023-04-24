@@ -8,7 +8,6 @@ const SearchProvider = ({ children }) => {
   const [colorFilter, setColorFilter] = useState(null);
   const [sizeFilter, setSizeFilter] = useState(null);
 
-  // memoize the full context value
   const contextValue = useMemo(
     () => ({
       search,
@@ -33,7 +32,6 @@ const SearchProvider = ({ children }) => {
   );
 
   return (
-    // the Provider gives access to the context to its children
     <SearchContext.Provider value={contextValue}>
       {children}
     </SearchContext.Provider>

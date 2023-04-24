@@ -131,7 +131,6 @@ const NewAccountForm = () => {
           await saveUser();
         }
       } else {
-        // No data first user is created
         await saveUser();
       }
     } catch (error) {
@@ -163,7 +162,6 @@ const NewAccountForm = () => {
     event.preventDefault();
     const currentState = checkError(state);
     if (allKeysNull(currentState.errors)) {
-      // if (allKeysNull(state.errors) && state !== initialState && state.password === state.confirmPassword) {
       checkUsername();
     } else {
       dispatch({ type: "SUBMIT" });

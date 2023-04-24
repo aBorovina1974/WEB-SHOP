@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "type": "ARTICLE",
+    "title": "The Art of Layering",
+    "text": "Layering has been a trend in fashion for years, but it can be tricky to master. In this article, Isabella Vega shares tips and tricks for layering like a pro. She discusses the importance of choosing the right fabrics, colors, and textures, as well as how to balance proportions and create depth in your outfit. With Isabella's guidance, you'll be able to create stylish and sophisticated looks that are perfect for any occasion.",
+    "created": "2022-05-15",
+    "author": "Isabella Vega"
+  },
+  {
+    "id": 2,
+    "type": "ARTICLE",
+    "title": "Sustainable Fashion",
+    "text": "As the world becomes more aware of the environmental impact of fast fashion, sustainable fashion has become increasingly important. In this article, Lucas Chen explores what sustainable fashion means, why it matters, and how consumers can make a difference. From using eco-friendly materials to supporting ethical and transparent supply chains, Lucas provides valuable insights on how we can all play a part in creating a more sustainable fashion industry.",
+    "created": "2023-08-28",
+    "author": "Lucas Chen"
+  },
+  {
+    "type": "ARTICLE",
+    "id": 3,
+    "title": "The Power of Accessories",
+    "text": "Accessories are a crucial element in any outfit, but choosing the right pieces can be challenging. In this article, Sophia Park showcases the power of accessories and how they can elevate your look. From statement jewelry to hats and bags, Sophia shares expert tips on how to choose accessories that complement your outfit and highlight your personal style.",
+    "created": "2022-06-06",
+    "author": "Sophia Park"
+  },
+  {
+    "type": "ARTICLE",
+    "id": 4,
+    "title": "Fashion Through the Decades",
+    "text": "Fashion is ever-changing, but some styles remain iconic through the decades. In this article, Harper Lee takes a trip down memory lane and explores some of the most iconic fashion styles of the past century. From the flapper dresses of the 1920s to the punk rock looks of the 1980s, Harper highlights the trends and designers that have shaped the fashion industry over the years.",
+    "created": "2022-11-02",
+    "author": "Harper Lee"
+  },
+  {
+    "type": "ARTICLE",
+    "id": 5,
+    "title": "Breaking Gender Norms",
+    "text": "Genderless fashion is a growing trend in the industry, breaking down traditional gender norms and encouraging people to express themselves in new ways. In this article, Alex Wong explores the rise of genderless fashion and the designers who are leading the way. From oversized silhouettes to neutral color palettes, Alex showcases the styles and trends that are blurring the lines between men's and women's fashion.",
+    "created": "2023-01-17",
+    "author": "Alex Wong"
+  }
+]

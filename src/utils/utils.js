@@ -36,23 +36,6 @@ export const sizes = [
   "W52",
 ];
 
-export const randomNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-export function getRandomColors(num, selected) {
-  const shuffledColors = colors.sort(() => Math.random() - 0.5);
-  return shuffledColors.slice(0, num).map((color, i) => {
-    if (selected === i + 1) {
-      return {
-        ...color,
-        selected: true,
-      };
-    }
-    return color;
-  });
-}
-
 export function calcAndFormatTotalPrice(quantity, price) {
   const totalPrice = Math.round(quantity * price * 100) / 100;
   const formattedPrice = totalPrice.toLocaleString();

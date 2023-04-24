@@ -12,8 +12,6 @@ export const setUserCookie = (userCookie) => {
 
 export const removeUserCookie = () => {
   cookies.remove("user");
-  // to support logging out from all windows
-  // window.localStorage.setItem("logout", Date.now().toString());
 };
 
 export const getUserCookie = () => {

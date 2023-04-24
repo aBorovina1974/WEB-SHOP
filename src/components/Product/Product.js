@@ -97,6 +97,7 @@ const Product = () => {
           isProductInCartExists(cart, foundProduct.id)
         ) {
           const selectedCart = cart.find((f) => f.id === foundProduct.id);
+
           if (selectedCart) {
             setQuantity(selectedCart.quantity);
 

@@ -14,8 +14,6 @@ const Search = (props) => {
       clearTimeout(timeoutId);
     }
     timeoutId = setTimeout(() => {
-      // Perform the search here using the latest query
-      // onSearchChange(searchParams);
       setSearch(value);
       timeoutId = null;
     }, 500);

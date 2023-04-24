@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ActionButton from "../../UI/buttons/ActionButton/ActionButton";
 import styles from "./OfferItem.module.scss";
 
 const OfferItem = (props) => {
+  const navigate = useNavigate();
+
   const image = (
     <img
       className={styles.image}
@@ -10,6 +13,11 @@ const OfferItem = (props) => {
       alt="Not available"
     />
   );
+
+  const onClickHandler = () => {
+    navigate("/catalog");
+  };
+
   const info = (
     <div className={styles.info}>
       <p
@@ -20,7 +28,9 @@ const OfferItem = (props) => {
         {props.content.title}
       </p>
       <p className={styles.subtitle}>{props.content.subtitle}</p>
-      <ActionButton>{props.content.action}</ActionButton>
+      <ActionButton onClick={onClickHandler}>
+        {props.content.action}
+      </ActionButton>
     </div>
   );
 

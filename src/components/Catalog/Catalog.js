@@ -17,7 +17,6 @@ const Catalog = () => {
   const { data: products, get: getProducts } = useFetch();
   const { data: categories, get: getCategories } = useFetch();
 
-  // Automatically scrolls to top whenever pathname changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -57,6 +56,9 @@ const Catalog = () => {
     }
     return result;
   }, [products, search, selectedBrands, colorFilter, sizeFilter]);
+  console.log("Products", products);
+  console.log("Categories", categories);
+  console.log("Brands", brands);
 
   if (!products || !categories || !brands || !filteredProducts) {
     return <Spinner />;

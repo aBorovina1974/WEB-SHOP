@@ -1,5 +1,4 @@
 .section {
-  //width: 100vw;
   background-color: #f8f9fb;
   padding: 0.6875rem;
 }
@@ -20,8 +19,8 @@
   list-style: none;
   padding: 0;
   margin-bottom: calc(2.875rem - 11px);
+
   @media (max-width: 810px) {
-    //white-space: normal;
     flex-wrap: wrap;
   }
 }

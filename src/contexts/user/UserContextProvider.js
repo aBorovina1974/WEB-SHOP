@@ -26,12 +26,10 @@ const UserProvider = ({ children }) => {
     }
   }, []);
 
-  // sign out the user, memoized
   const signOut = useCallback(() => {
     setUser(initUser);
   }, []);
 
-  // memoize the full context value
   const contextValue = useMemo(
     () => ({
       user,
@@ -42,7 +40,6 @@ const UserProvider = ({ children }) => {
   );
 
   return (
-    // the Provider gives access to the context to its children
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
