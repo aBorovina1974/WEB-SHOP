@@ -56,9 +56,6 @@ const Catalog = () => {
     }
     return result;
   }, [products, search, selectedBrands, colorFilter, sizeFilter]);
-  console.log("Products", products);
-  console.log("Categories", categories);
-  console.log("Brands", brands);
 
   if (!products || !categories || !brands || !filteredProducts) {
     return <Spinner />;
