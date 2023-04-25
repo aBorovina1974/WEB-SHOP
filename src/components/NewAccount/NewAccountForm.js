@@ -199,14 +199,14 @@ const NewAccountForm = () => {
           <InputField
             id="username"
             name="username"
-            label="Username"
+            label="Email"
             type="email"
             value={state.username}
             onChange={onInputAction}
             error={state.errors.username}
             autocomplete={"username"}
             required={true}
-            placeholder={"Username (Email)"}
+            placeholder={"Email"}
           />
           <InputField
             id="password"
