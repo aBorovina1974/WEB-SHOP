@@ -1,21 +1,45 @@
 import styles from "./CartItem.module.scss";
 import ProductImage from "../../Product/ProductGalery/ProductImage";
-import useQuantity from "../../../hooks/useQuantity";
-import { useEffect } from "react";
-import { calcAndFormatTotalPrice } from "../../../utils/utils";
 import CartActions from "../CartActions/CartActions";
 import SelectedColor from "../SelectedColor/SelectedColor";
+import React, { useState } from "react";
+import ProductQuantity from "../../Product/ProductQuantity/ProductQuantity";
+import { calcAndFormatTotalPrice } from "../../../utils/utils";
 
 const CartItem = ({ columns, product, handleUpdateCart }) => {
-  const { quantityComponent, quantity } = useQuantity(product);
+  const [quantity, setQuantity] = useState(product ? product.quantity : 1);
 
-  useEffect(() => {
-    handleUpdateCart(
-      product,
-      quantity,
-      calcAndFormatTotalPrice(quantity, product.price)
-    );
-  }, [quantity]);
+  const onQuantityChange = (type) => {
+    switch (type) {
+      case "+":
+        setQuantity((prev) => {
+          const result = prev + 1;
+          handleUpdateCart(
+            product,
+            result,
+            calcAndFormatTotalPrice(result, product.price)
+          );
+          return result;
+        });
+        break;
+      case "-":
+        setQuantity((prev) => {
+          if (prev > 1) {
+            const result = prev - 1;
+            handleUpdateCart(
+              product,
+              result,
+              calcAndFormatTotalPrice(result, product.price)
+            );
+            return result;
+          }
+          return prev;
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
   const rowCell = (key, item) => {
     switch (key.key) {
@@ -39,7 +63,12 @@ const CartItem = ({ columns, product, handleUpdateCart }) => {
         return <div className={styles.size}>{item[key.key]}</div>;
 
       case "quantity":
-        return quantityComponent;
+        return (
+          <ProductQuantity
+            onQuantityChange={onQuantityChange}
+            quantity={quantity}
+          />
+        );
 
       case "total":
         return <div className={styles.total}>{item[key.key]}</div>;

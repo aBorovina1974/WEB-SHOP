@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import DashboardItem from "../../DashboardItem/DashboardItem";
 import dashboardItems from "../../../../data/dashboard.json";
 import styles from "./DashboardItems.module.scss";
+import { UserContext } from "../../../../contexts/user/UserContextProvider";
 
 const DashboardItems = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <ul className={styles.items}>
       {dashboardItems &&
-        dashboardItems.map((dashboardItems, index) => (
+        dashboardItems.map((dashboardItem, index) => (
           <DashboardItem
-            key={index}
+            key={dashboardItem.id}
             item={{
-              id: dashboardItems.id,
-              type: dashboardItems.type,
-              title: dashboardItems.title,
+              id: dashboardItem.id,
+              type: dashboardItem.type,
+              title: dashboardItem.title,
               subtitle: dashboardItems.subtitle,
-              text: dashboardItems.text,
-              name: dashboardItems.name,
-              email: dashboardItems.email,
-              action: dashboardItems.action,
+              text: dashboardItem.text,
+              name: `${user.first_name} ${user.last_name}`,
+              email: user.email,
+              action: dashboardItem.action,
             }}
           />
         ))}

@@ -211,11 +211,40 @@
           font-size: 1.125rem;
         }
 
+        .tax {
+          font-family: "OswaldMedium";
+          font-size: 1.125rem;
+          color: #828282;
+        }
+
         .total {
           font-family: "OswaldRegular";
           font-size: 1.5rem;
         }
       }
+    }
+
+    .checkout-button {
+      width: 100%;
+      height: 55px;
+      color: #ffffff;
+      background: #000000;
+      text-transform: uppercase;
+      font-family: "OswaldMedium";
+      font-size: 0.875rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .checkout-button-disabled {
+      width: 100%;
+      height: 55px;
+      color: #ffffff;
+      background: #828282;
+      text-transform: uppercase;
+      font-family: "OswaldMedium";
+      font-size: 0.875rem;
+      border: none;
     }
   }
 }

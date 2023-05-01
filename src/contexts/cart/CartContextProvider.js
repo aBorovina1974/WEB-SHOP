@@ -7,7 +7,10 @@ const reducer = (state = initialCart, action) => {
   switch (action.type) {
     case "update":
       const updatedIndex = state.findIndex(
-        (item) => item.id === action.payload.id
+        (item) =>
+          item.id === action.payload.id &&
+          item.color === action.payload.color &&
+          item.size === action.payload.size
       );
       if (updatedIndex === -1) {
         return [...state, action.payload];
@@ -17,6 +20,7 @@ const reducer = (state = initialCart, action) => {
           ...newState[updatedIndex],
           ...action.payload,
         };
+
         return newState;
       }
     case "remove":

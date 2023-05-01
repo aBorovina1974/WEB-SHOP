@@ -8,7 +8,7 @@ import WorkInProgress from "../../WorkInProgress";
 
 const Dashboard = (props) => {
   const contentItems = [
-    { content: <DashboardItems />, title: "My Dashboard" },
+    { content: <DashboardItems />, title: "My Profile" },
     { content: <EditAccountForm />, title: "Edit Account Information" },
     { content: <AddNewAddressForm />, title: "Add New Address" },
     { content: <WorkInProgress /> },

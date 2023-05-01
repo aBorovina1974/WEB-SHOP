@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <NewAccountPage />,
       },
       {
-        path: "dashboard",
+        path: "myprofile",
         element: (
           <PrivateRoutes>
             <DashboardPage />
@@ -49,10 +49,10 @@ const router = createBrowserRouter([
         path: "protected",
         element: <Protected />,
       },
-      {
-        path: "sale",
-        element: <WorkInProgress />,
-      },
+      // {
+      //   path: "sale",
+      //   element: <WorkInProgress />,
+      // },
       {
         path: "contact",
         element: <WorkInProgress />,

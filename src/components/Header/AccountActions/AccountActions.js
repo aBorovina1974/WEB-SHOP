@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./AccountActions.module.scss";
 import { SignIn } from "../../SignIn/SignIn";
 import { Modal } from "../../Modal/Modal";
@@ -9,6 +9,7 @@ import { removeUserCookie } from "../../../utils/auth";
 const AccountActions = (props) => {
   const [isSignIn, setIsSignIn] = useState(false);
   const { user, signOut } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSignIn = (state) => {
     setIsSignIn(state);
@@ -17,6 +18,7 @@ const AccountActions = (props) => {
   const handleSignOut = () => {
     removeUserCookie();
     signOut();
+    navigate(-1);
   };
 
   return (

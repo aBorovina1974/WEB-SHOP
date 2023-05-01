@@ -1,10 +1,12 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import styles from "./NewAccountForm.module.scss";
 import InputField from "../InputField/InputField";
 import useFetch from "../../hooks/useFetch";
 import CheckBoxField from "../CheckBoxField/CheckBoxField";
 import { useNavigate } from "react-router-dom";
 import useNotification from "../../hooks/useNotification";
+import { Modal } from "../Modal/Modal";
+import { SignIn } from "../SignIn/SignIn";
 
 const initialState = {
   firstName: "",
@@ -86,6 +88,11 @@ const NewAccountForm = () => {
   const navigate = useNavigate();
   const { isLoading, post } = useFetch();
   const { showSuccess, showError, notificationComponent } = useNotification();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const handleSignIn = (state) => {
+    setIsSignedIn(state);
+  };
 
   function allKeysNull(obj) {
     for (const key in obj) {
@@ -140,7 +147,7 @@ const NewAccountForm = () => {
   };
 
   const handleNavigate = () => {
-    navigate("/");
+    navigate(-1);
   };
 
   const saveUser = async () => {
@@ -163,6 +170,7 @@ const NewAccountForm = () => {
     const currentState = checkError(state);
     if (allKeysNull(currentState.errors)) {
       checkUsername();
+      handleSignIn(true);
     } else {
       dispatch({ type: "SUBMIT" });
     }
@@ -242,6 +250,7 @@ const NewAccountForm = () => {
             onChange={onCheckboxAction}
             error={state.errors.newsletter}
             required={true}
+            checked={state.newsletter}
           />
 
           <div className={styles.actions}>
@@ -262,6 +271,13 @@ const NewAccountForm = () => {
           </div>
         </form>
       </div>
+      {isSignedIn && (
+        <Modal
+          isOpen={isSignedIn}
+          closeHandler={handleSignIn}
+          modalContent={<SignIn handleSignInShow={handleSignIn} />}
+        />
+      )}
       {notificationComponent}
     </div>
   );

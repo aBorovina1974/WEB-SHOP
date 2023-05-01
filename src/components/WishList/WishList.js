@@ -5,15 +5,17 @@ import WishListItem from "./WishListItem/WishListItem";
 import NoData from "../NoData/NoData";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/cart/CartContextProvider";
+import { isProductInWishListExists } from "../../utils/utils";
 
 const WishList = () => {
-  const { wishList, updateWishList, removeFromWishList, clearWishList } =
+  const { wishList, updateWishList, clearWishList, removeWishList } =
     useContext(WishListContext);
+  const { cart } = useContext(CartContext);
   const { updateCart } = useContext(CartContext);
 
   const handleAddToCart = (product) => {
     updateCart({ ...product });
-    removeFromWishList({ ...product });
+    removeWishList({ ...product });
   };
 
   const navigate = useNavigate();
@@ -65,11 +67,14 @@ const WishList = () => {
               product={item}
               handleUpdateWishlist={handleUpdateWishlist}
               handleAddToCart={handleAddToCart}
+              isWishListExist={isProductInWishListExists(cart, item.id)}
             />
           ))}
         </div>
         <div className={styles.actions}>
-          <button className={styles.action}>SHARE WISH LIST</button>
+          <button onClick={handleContinueShopping} className={styles.action}>
+            GO TO CATALOG
+          </button>
           <button className={styles.action} onClick={handleClearWishList}>
             CLEAR WISH LIST
           </button>

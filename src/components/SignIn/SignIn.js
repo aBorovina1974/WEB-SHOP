@@ -95,7 +95,7 @@ export function SignIn({ handleSignInShow }) {
         onChange={handleChange}
         error={error.username}
         autocomplete={"username"}
-        placeholder={"Username (Email)"}
+        placeholder={"Email"}
         classField={styles.field}
         classValidation={styles.validation}
       />

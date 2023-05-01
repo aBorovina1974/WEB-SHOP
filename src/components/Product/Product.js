@@ -5,6 +5,7 @@ import {
   calcAndFormatTotalPrice,
   createColorArray,
   createSizeArray,
+  isProductInWishListExists,
   markAvailableSizes,
   sizes,
 } from "../../utils/utils";
@@ -50,17 +51,6 @@ const Product = () => {
     }
   }, [product]);
 
-  useEffect(() => {
-    if (
-      product &&
-      cart &&
-      cart.length > 0 &&
-      isProductInCartExists(cart, product.id)
-    ) {
-      handleUpdateCart();
-    }
-  }, [quantity, totalPrice, allSizes, allColors]);
-
   const getData = useCallback(async (productId) => {
     const responseProd = await fetch(
       "https://web-shop-database-default-rtdb.firebaseio.com/products.json?auth=qFjp2jdh4VV2y0dHQntW4kfwjrpazNbhoTwealRT"
@@ -90,63 +80,22 @@ const Product = () => {
         if (brands) {
           setBrand(brands.find((f) => f.id === foundProduct.brand_id));
         }
-
-        if (
-          cart &&
-          cart.length > 0 &&
-          isProductInCartExists(cart, foundProduct.id)
-        ) {
-          const selectedCart = cart.find((f) => f.id === foundProduct.id);
-
-          if (selectedCart) {
-            setQuantity(selectedCart.quantity);
-
-            setAllSizes((prev) =>
-              prev
-                .map((s) => {
-                  return {
-                    ...s,
-                    selected: false,
-                  };
-                })
-                .map((size) => {
-                  if (size.size === selectedCart.size) {
-                    return {
-                      ...size,
-                      selected: true,
-                    };
-                  }
-                  return size;
-                })
-            );
-
-            setAllColors((prev) =>
-              prev
-                .map((p) => {
-                  return {
-                    ...p,
-                    selected: false,
-                  };
-                })
-                .map((color) => {
-                  if (color.color === selectedCart.color) {
-                    return {
-                      ...color,
-                      selected: true,
-                    };
-                  }
-                  return color;
-                })
-            );
-          }
-        }
       }
     }
   }, []);
 
-  const isProductInCartExists = (cartArr, productId) => {
+  const isProductInCartExists = (cartArr, currentProduct) => {
+    const temp = {
+      id: currentProduct.id,
+      color: allColors.find((f) => f.selected === true)?.color,
+      size: allSizes.find((f) => f.selected === true)?.size,
+    };
     for (let i = 0; i < cartArr.length; i++) {
-      if (cartArr[i].id === productId) {
+      if (
+        cartArr[i].id === temp.id &&
+        cartArr[i].color === temp.color &&
+        cartArr[i].size === temp.size
+      ) {
         return true;
       }
     }
@@ -283,7 +232,7 @@ const Product = () => {
             </div>
           </div>
           <div className={styles.buttons}>
-            {cart && isProductInCartExists(cart, product.id) ? (
+            {cart && isProductInCartExists(cart, product) ? (
               <button className={styles.add} type="button" onClick={goToCart}>
                 Go to cart
               </button>
@@ -303,7 +252,7 @@ const Product = () => {
             >
               <LikeIcon height={12} width={14} />
               <span className={styles["save-text"]}>
-                {wishList && isProductInCartExists(wishList, product.id)
+                {wishList && isProductInWishListExists(wishList, product.id)
                   ? "Update"
                   : "Save"}
               </span>

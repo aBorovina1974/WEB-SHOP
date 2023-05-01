@@ -12,15 +12,11 @@
 }
 
 .search {
-  position: absolute;
-  left: 1rem;
-  top: 0.8125rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .items {
-  position: absolute;
-  top: 4.812rem;
-  left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

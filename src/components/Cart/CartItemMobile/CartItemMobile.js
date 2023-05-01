@@ -1,21 +1,46 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./CartItemMobile.module.scss";
 import SelectedColor from "../SelectedColor/SelectedColor";
 import ProductImage from "../../Product/ProductGalery/ProductImage";
 import CartActions from "../CartActions/CartActions";
-import useQuantity from "../../../hooks/useQuantity";
 import { calcAndFormatTotalPrice } from "../../../utils/utils";
+import ProductQuantity from "../../Product/ProductQuantity/ProductQuantity";
 
 const CartItemMobile = ({ product, handleUpdateCart }) => {
-  const { quantityComponent, quantity } = useQuantity(product);
+  const [quantity, setQuantity] = useState(product ? product.quantity : 1);
 
-  useEffect(() => {
-    handleUpdateCart(
-      product,
-      quantity,
-      calcAndFormatTotalPrice(quantity, product.price)
-    );
-  }, [quantity]);
+  const onQuantityChange = (type) => {
+    switch (type) {
+      case "+":
+        setQuantity((prev) => {
+          const result = prev + 1;
+          handleUpdateCart(
+            product,
+            result,
+            calcAndFormatTotalPrice(result, product.price)
+          );
+          return result;
+        });
+        break;
+
+      case "-":
+        setQuantity((prev) => {
+          if (prev > 1) {
+            const result = prev - 1;
+            handleUpdateCart(
+              product,
+              result,
+              calcAndFormatTotalPrice(result, product.price)
+            );
+            return result;
+          }
+          return prev;
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className={styles["cart-items"]}>
@@ -48,7 +73,10 @@ const CartItemMobile = ({ product, handleUpdateCart }) => {
         <div className={styles.section}>
           <div className={styles.quantity}>
             <span>QUANTITY</span>
-            {quantityComponent}
+            <ProductQuantity
+              onQuantityChange={onQuantityChange}
+              quantity={quantity}
+            />
           </div>
           <div className={`${styles["label-value"]} ${styles.alignment}`}>
             <span className={`${styles.label} ${styles["price-label"]}`}>
