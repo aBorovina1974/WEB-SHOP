@@ -13,6 +13,8 @@ import { UserContext } from "../../contexts/user/UserContextProvider";
 import MenuButton from "./MenuButton/MenuButton";
 import User from "../User/User";
 import { useLocation } from "react-router-dom";
+import { Modal } from "../Modal/Modal";
+import { SignIn } from "../SignIn/SignIn";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,6 +23,11 @@ const Header = () => {
   const clickOutsideRef = useRef(null);
   const { user } = useContext(UserContext);
   const { pathname } = useLocation();
+  const [isSignIn, setIsSignIn] = useState(false);
+
+  const handleSignIn = (state) => {
+    setIsSignIn(state);
+  };
 
   const openSearchHandler = () => {
     setIsSearchOpen(true);
@@ -51,7 +58,11 @@ const Header = () => {
   return (
     <header className={styles.header}>
       {isMenuOpen && !isMatchMedia && (
-        <Menu menuRef={clickOutsideRef} onClose={toggleMenu} />
+        <Menu
+          menuRef={clickOutsideRef}
+          onClose={toggleMenu}
+          handleSignIn={handleSignIn}
+        />
       )}
       <MenuButton isOpen={isMenuOpen} onClick={toggleMenu} />
       <LogoIcon className={styles.logo} />
@@ -68,11 +79,18 @@ const Header = () => {
         )}
       </div>
       <div className={styles["navigation"]}>
-        <AccountActions />
+        <AccountActions handleSignIn={handleSignIn} />
         <WishListButton />
         <ShoppingCartButton />
         {user.email.length > 0 && <User user={user.first_name} />}
       </div>
+      {isSignIn && (
+        <Modal
+          isOpen={isSignIn}
+          closeHandler={handleSignIn}
+          modalContent={<SignIn handleSignInShow={handleSignIn} />}
+        />
+      )}
     </header>
   );
 };

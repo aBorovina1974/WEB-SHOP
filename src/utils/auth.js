@@ -1,10 +1,9 @@
 import cookies from "js-cookie";
 
 export const setUserCookie = (userCookie) => {
-  //Made just for test how it works
-  let inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+  let inTwoHours = new Date(new Date().getTime() + 120 * 60 * 1000);
   cookies.set("user", userCookie, {
-    expires: inFifteenMinutes,
+    expires: inTwoHours,
   });
 
   // cookies.set("user", userCookie);

@@ -1,15 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./Menu.module.scss";
 import RightArrowIcon from "../../UI/icons/RightArrowIcon";
 import Search from "../../Search/Search";
 import { Link, useLocation } from "react-router-dom";
-import { Modal } from "../../Modal/Modal";
-import { SignIn } from "../../SignIn/SignIn";
 import { UserContext } from "../../../contexts/user/UserContextProvider";
 import { removeUserCookie } from "../../../utils/auth";
 
 const Menu = (props) => {
-  const [isSignIn, setIsSignIn] = useState(false);
   const { user, signOut } = useContext(UserContext);
   const { pathname } = useLocation();
 
@@ -28,10 +25,6 @@ const Menu = (props) => {
   const handleSignOut = () => {
     removeUserCookie();
     signOut();
-  };
-
-  const handleSignIn = (state) => {
-    setIsSignIn(state);
   };
 
   return (
@@ -55,7 +48,7 @@ const Menu = (props) => {
             {user.email.length > 0 ? (
               <span onClick={handleSignOut}>SIGN OUT</span>
             ) : (
-              <span onClick={() => handleSignIn(true)}>SIGN IN</span>
+              <span onClick={() => props.handleSignIn(true)}>SIGN IN</span>
             )}
             <RightArrowIcon />
           </li>
@@ -69,14 +62,6 @@ const Menu = (props) => {
           )}
         </ul>
       </div>
-      {isSignIn && (
-        <Modal
-          menuRef={props.menuRef}
-          isOpen={isSignIn}
-          closeHandler={handleSignIn}
-          modalContent={<SignIn handleSignInShow={handleSignIn} />}
-        />
-      )}
     </>
   );
 };

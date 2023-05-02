@@ -1,4 +1,4 @@
-import SearchIcon from "../UI/icons/SearchIcon";
+// import SearchIcon from "../UI/icons/SearchIcon";
 import Input from "../UI/inputs/Input";
 import styles from "./Search.module.scss";
 import { useContext } from "react";
@@ -28,12 +28,12 @@ const Search = (props) => {
           placeholder={props.placeholder}
           onChange={searchHandler}
         />
-        <button className={styles.button}>
+        {/* <button className={styles.button}>
           <span className={styles.title}>FIND</span>
           <span className={styles.icon}>
             <SearchIcon width={12} height={12} />
           </span>
-        </button>
+        </button> */}
       </form>
     </>
   );
