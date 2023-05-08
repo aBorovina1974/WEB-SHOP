@@ -12,7 +12,7 @@ import AccountActions from "./AccountActions/AccountActions";
 import { UserContext } from "../../contexts/user/UserContextProvider";
 import MenuButton from "./MenuButton/MenuButton";
 import User from "../User/User";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Modal } from "../Modal/Modal";
 import { SignIn } from "../SignIn/SignIn";
 
@@ -24,9 +24,13 @@ const Header = () => {
   const { user } = useContext(UserContext);
   const { pathname } = useLocation();
   const [isSignIn, setIsSignIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignIn = (state) => {
     setIsSignIn(state);
+    if (pathname === "/signup") {
+      navigate("/");
+    }
   };
 
   const openSearchHandler = () => {

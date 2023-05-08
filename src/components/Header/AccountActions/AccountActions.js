@@ -11,7 +11,7 @@ const AccountActions = (props) => {
   const handleSignOut = () => {
     removeUserCookie();
     signOut();
-    navigate(-1);
+    navigate("/");
   };
 
   return (

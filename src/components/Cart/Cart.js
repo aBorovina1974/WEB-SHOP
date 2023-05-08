@@ -164,7 +164,9 @@ const Cart = () => {
             }
             disabled={isLoading || user.email.length === 0}
           >
-            Proceed to checkout
+            {user.email.length === 0
+              ? "Please login to proceed"
+              : "Proceed to checkout"}
           </button>
         </div>
       </div>

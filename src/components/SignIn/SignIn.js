@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./SignIn.module.scss";
 import CloseIcon from "../UI/icons/CloseIcon";
 import Checkbox from "../Checkbox/Chackbox";
@@ -12,6 +12,7 @@ export function SignIn({ handleSignInShow }) {
   const [formUser, setFormUser] = useState({ username: "", password: "" });
   const [error, setError] = useState({ username: "", password: "" });
   const { setUser } = useContext(UserContext);
+  const { pathname } = useLocation();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -70,6 +71,9 @@ export function SignIn({ handleSignInShow }) {
 
     if (formUser.username.length > 0 && formUser.password.length > 0) {
       await fetchUser();
+      if (pathname === "/signup") {
+        navigation("/");
+      }
     }
   };
 

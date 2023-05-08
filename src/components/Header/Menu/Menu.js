@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import styles from "./Menu.module.scss";
 import RightArrowIcon from "../../UI/icons/RightArrowIcon";
 import Search from "../../Search/Search";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../contexts/user/UserContextProvider";
 import { removeUserCookie } from "../../../utils/auth";
 
 const Menu = (props) => {
   const { user, signOut } = useContext(UserContext);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
     { id: 1, url: "/", title: "HOME" },
@@ -25,6 +26,8 @@ const Menu = (props) => {
   const handleSignOut = () => {
     removeUserCookie();
     signOut();
+    navigate("/");
+    closeHandler();
   };
 
   return (

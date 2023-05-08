@@ -1,11 +1,26 @@
-import Product1 from "../../../assets/products/Product1.png";
-import Product2 from "../../../assets/products/Product2.png";
-import Product3 from "../../../assets/products/Product3.png";
-import Product4 from "../../../assets/products/Product4.png";
-import Product5 from "../../../assets/products/Product5.png";
-import Product6 from "../../../assets/products/Product6.png";
-import Product7 from "../../../assets/products/Product7.png";
-import Product8 from "../../../assets/products/Product8.png";
+import Product1 from "../../../assets/products/products-images/Product1.jpg";
+
+import Product2 from "../../../assets/products/products-images/Product2.jpg";
+
+import Product3 from "../../../assets/products/products-images/Product3.jpg";
+
+import Product4 from "../../../assets/products/products-images/Product4.jpg";
+
+import Product5 from "../../../assets/products/products-images/Product5.png";
+
+import Product6 from "../../../assets/products/products-images/Product6.jpg";
+
+import Product7 from "../../../assets/products/products-images/Product7.jpg";
+
+import Product8 from "../../../assets/products/products-images/Product8.jpg";
+
+import Product9 from "../../../assets/products/products-images/Product9.jpg";
+
+import Product10 from "../../../assets/products/products-images/Product10.png";
+
+import Product11 from "../../../assets/products/products-images/Product11.png";
+
+import Product12 from "../../../assets/products/products-images/Product12.jpg";
 
 const ProductImage = ({ productName, height }) => {
   let productImage;
@@ -34,6 +49,18 @@ const ProductImage = ({ productName, height }) => {
       break;
     case "Product8":
       productImage = Product8;
+      break;
+    case "Product9":
+      productImage = Product9;
+      break;
+    case "Product10":
+      productImage = Product10;
+      break;
+    case "Product11":
+      productImage = Product11;
+      break;
+    case "Product12":
+      productImage = Product12;
       break;
     default:
       productImage = Product1;

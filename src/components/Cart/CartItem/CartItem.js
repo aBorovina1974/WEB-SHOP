@@ -47,7 +47,7 @@ const CartItem = ({ columns, product, handleUpdateCart }) => {
         return (
           <div className={styles[key.css]}>
             <div className={styles["name-container"]}>
-              <ProductImage height={"100px"} productName={item.image} />
+              <ProductImage height={"104px"} productName={item.image} />
               <div className={styles["name"]}>
                 {item[key.key]}
                 <SelectedColor color={item["color"]} />

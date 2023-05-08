@@ -46,11 +46,7 @@ const CartItemMobile = ({ product, handleUpdateCart }) => {
     <div className={styles["cart-items"]}>
       <div className={styles["item-container"]}>
         <div className={styles.section}>
-          <ProductImage
-            width={"84px"}
-            height={"104px"}
-            productName={product.image}
-          />
+          <ProductImage height={"104px"} productName={product.image} />
           <div className={styles["product-info"]}>
             <div className={styles.name}>{product.name}</div>
             <div className={styles["label-value"]}>

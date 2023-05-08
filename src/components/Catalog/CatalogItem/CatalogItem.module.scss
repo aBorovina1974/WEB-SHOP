@@ -4,6 +4,9 @@
 
   img {
     max-height: 450px;
+    aspect-ratio: 7/9;
+    object-fit: cover;
+    object-position: center;
     margin-bottom: 0.875rem;
     @media (max-width: 768px) {
       max-height: 215px;

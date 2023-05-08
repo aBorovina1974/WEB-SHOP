@@ -37,16 +37,24 @@
 
   .gallery {
     width: calc(50% - 2.25rem);
-    @media (min-width: 1201px) {
-      img {
-        height: 500px;
-      }
-    }
 
     @media (max-width: 768px) {
       width: 100%;
-      img {
+    }
+
+    img {
+      height: 450px;
+      aspect-ratio: 7/9;
+      object-fit: cover;
+      object-position: center;
+
+      @media (min-width: 1201px) {
+        height: 500px;
+      }
+
+      @media (max-width: 768px) {
         width: 100%;
+        height: auto;
       }
     }
   }
