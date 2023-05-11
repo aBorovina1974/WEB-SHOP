@@ -1,15 +1,17 @@
+import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootLayout from "./pages/Root";
-import HomePage from "./pages/Home";
-import NewAccountPage from "./pages/NewAccout";
-import DashboardPage from "./pages/Dashboard";
-import CatalogPage from "./pages/CatalogPage";
-import CartPage from "./pages/CartPage";
-import Product from "./components/Product/Product";
-import WishListPage from "./pages/WishList";
-import Protected from "./Protected";
-import WorkInProgress from "./WorkInProgress";
-import PrivateRoutes from "./PrivateRoutes";
+import Spinner from "./components/Spinner/Spinner";
+const RootLayout = lazy(() => import("./pages/Root"));
+const HomePage = lazy(() => import("./pages/Home"));
+const NewAccountPage = lazy(() => import("./pages/NewAccout"));
+const DashboardPage = lazy(() => import("./pages/Dashboard"));
+const CatalogPage = lazy(() => import("./pages/CatalogPage"));
+const CartPage = lazy(() => import("./pages/CartPage"));
+const Product = lazy(() => import("./components/Product/Product"));
+const WishListPage = lazy(() => import("./pages/WishList"));
+const Protected = lazy(() => import("./Protected"));
+const WorkInProgress = lazy(() => import("./WorkInProgress"));
+const PrivateRoutes = lazy(() => import("./PrivateRoutes"));
 
 const router = createBrowserRouter([
   {
@@ -62,7 +64,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<Spinner />}>
+      <RouterProvider router={router} />;
+    </Suspense>
+  );
 }
 
 export default App;

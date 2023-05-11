@@ -11,7 +11,8 @@
   }
 
   .type {
-    font-family: "OswaldSemibold";
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
     font-size: 1.125rem;
     line-height: 1.75rem;
     color: #bdbdbd;
@@ -24,7 +25,8 @@
   }
 
   .title {
-    font-family: "OswaldRegular";
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
     font-size: 1.625rem;
     line-height: 2.375rem;
     margin: 0;
@@ -36,7 +38,8 @@
   }
 
   .text {
-    font-family: "RobotoLight";
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
     font-size: 1rem;
     margin-top: 2rem;
     white-space: normal;
@@ -56,7 +59,8 @@
   }
 
   .span {
-    font-family: "OswaldLight";
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
     font-size: 0.812rem;
     line-height: 2.375rem;
     color: #4f4f4f;

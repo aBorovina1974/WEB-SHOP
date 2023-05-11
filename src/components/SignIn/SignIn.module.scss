@@ -4,7 +4,8 @@ $background-color: #ffffff;
 %button-shared {
   width: 328px;
   height: 50px;
-  font-family: "OswaldMedium";
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
   font-size: 0.875rem;
   margin-bottom: 1rem;
   cursor: pointer;
@@ -15,7 +16,8 @@ $background-color: #ffffff;
   height: 44px;
   border: 1px solid #c4c4c4;
   outline: none;
-  font-family: "RobotoRegular";
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   font-size: 1rem;
   padding-left: 1rem;
   color: #828282;
@@ -48,7 +50,8 @@ $background-color: #ffffff;
 }
 
 .user {
-  font-family: "RobotoRegular";
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
   width: 328px;
   height: 44px;
   background: $background-color;
@@ -75,6 +78,7 @@ $background-color: #ffffff;
 
 h2 {
   font-size: 2rem;
-  font-family: "OswaldRegular";
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
   margin: 1.875rem 0 1.875rem 0;
 }

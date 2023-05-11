@@ -8,7 +8,8 @@
   }
 
   .title {
-    font-family: "OswaldRegular";
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
     font-size: 1rem;
     text-transform: uppercase;
     color: #828282;
@@ -33,7 +34,8 @@
   .action {
     width: 292px;
     height: 32px;
-    font-family: "OswaldMedium";
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
     font-size: 0.75rem;
     background-color: black;
     color: white;

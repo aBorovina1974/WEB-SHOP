@@ -9,7 +9,8 @@
   h2 {
     display: flex;
     align-items: center;
-    font-family: "OswaldRegular";
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
     font-size: 1rem;
     color: #828282;
     margin-bottom: 0;
@@ -23,7 +24,8 @@
   }
 
   h3 {
-    font-family: "OswaldMedium";
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
     font-size: 0.875rem;
     color: black;
 
@@ -35,7 +37,8 @@
   }
 
   p {
-    font-family: "RobotoRegular";
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
     font-size: 1rem;
     color: #828282;
     margin-top: 0;
@@ -43,7 +46,8 @@
 
   button {
     height: 24px;
-    font-family: "RobotoMedium";
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
     font-size: 0.875rem;
     border: none;
     background-color: #e6f1fa;

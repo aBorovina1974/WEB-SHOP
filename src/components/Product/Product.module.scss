@@ -2,7 +2,8 @@
   width: 221px;
   height: 50px;
   text-transform: uppercase;
-  font-family: "OswaldMedium";
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
 }
@@ -14,7 +15,8 @@
   justify-content: space-between;
   gap: 4.5rem;
   flex-wrap: wrap;
-  font-family: "OswaldRegular";
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
 
   @media (max-width: 1450px) {
     padding: 6rem 10rem 3rem 10rem;
@@ -78,7 +80,8 @@
         align-self: start;
         padding: 0.5rem;
         background: #f0f2f2;
-        font-family: "OswaldSemibold";
+        font-family: "Oswald", sans-serif;
+        font-weight: 600;
         font-size: 0.875rem;
         white-space: nowrap;
         text-transform: uppercase;
@@ -115,7 +118,8 @@
     }
 
     .price {
-      font-family: "OswaldSemibold";
+      font-family: "Oswald", sans-serif;
+      font-weight: 600;
       font-size: 1.625rem;
       text-transform: uppercase;
       @media (max-width: 768px) {
@@ -190,7 +194,8 @@
       h2 {
         margin: 0;
         @media (max-width: 768px) {
-          font-family: "OswaldMedium";
+          font-family: "Oswald", sans-serif;
+          font-weight: 500;
           font-size: 0.75rem;
           text-transform: uppercase;
           color: #3f3f3f;
@@ -214,7 +219,8 @@
 
     .content {
       .subtitle {
-        font-family: OswaldRegular;
+        font-family: "Oswald", sans-serif;
+        font-weight: 400;
         font-size: 0.875rem;
         text-transform: uppercase;
         @media (max-width: 768px) {
@@ -228,7 +234,8 @@
       }
 
       .description {
-        font-family: RobotoRegular;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
         font-size: 0.875rem;
       }
     }

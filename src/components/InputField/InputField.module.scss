@@ -22,7 +22,8 @@
     }
 
     .label {
-      font-family: "RobotoRegular";
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
       font-size: 1rem;
       margin-right: 0.5rem;
       margin-bottom: 0.25rem;
@@ -38,7 +39,8 @@
       height: 32px;
       border: 1px solid #c4c4c4;
       outline: none;
-      font-family: "RobotoRegular";
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
       font-size: 1rem;
       padding-left: 1rem;
       color: #3f3f3f;
@@ -52,7 +54,8 @@
     }
 
     input::placeholder {
-      font-family: "RobotoRegular";
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
       font-size: 0.875rem;
       color: #828282;
     }

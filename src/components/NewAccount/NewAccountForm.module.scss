@@ -6,7 +6,8 @@
   .title {
     text-align: left;
     margin-top: 4rem;
-    font-family: "OswaldRegular";
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
     padding-left: 0;
     font-size: 1.5rem;
 
@@ -40,7 +41,8 @@
       margin: 1rem auto 0 auto;
 
       h2 {
-        font-family: "OswaldRegular";
+        font-family: "Oswald", sans-serif;
+        font-weight: 400;
         font-size: 1rem;
         text-transform: uppercase;
         color: #828282;
@@ -61,7 +63,8 @@
         height: 2rem;
         border: none;
         background-color: black;
-        font-family: "OswaldMedium";
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
         font-size: 0.875rem;
         color: white;
         cursor: pointer;
@@ -82,7 +85,8 @@
         background-color: transparent;
         border: none;
         outline: none;
-        font-family: "OswaldMedium";
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
         font-size: 0.875rem;
         color: #828282;
       }

@@ -14,7 +14,8 @@
   }
 
   .catalog-item__category-title {
-    font-family: "OswaldSemibold";
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
     font-size: 12px;
     line-height: 18px;
     text-transform: uppercase;
@@ -26,7 +27,8 @@
   }
 
   .catalog-item__product-name {
-    font-family: "OswaldLight";
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
     font-size: 18px;
     line-height: 27px;
     margin-bottom: 1.125rem;
@@ -38,7 +40,8 @@
   }
 
   .catalog-item__product-price {
-    font-family: "OswaldMedium";
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
 
     font-size: 22px;
     line-height: 33px;

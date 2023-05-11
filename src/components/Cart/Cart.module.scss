@@ -1,5 +1,6 @@
 %cart-common {
-  font-family: "RobotoMedium";
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   font-size: 0.875rem;
   text-transform: uppercase;
 }
@@ -18,7 +19,8 @@
   }
 
   h3 {
-    font-family: "OswaldRegular";
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
     font-size: 1.125rem;
     margin: 4rem 0 0.625rem;
 
@@ -54,7 +56,8 @@
       .header-row {
         display: flex;
         flex-direction: row;
-        font-family: "OswaldMedium";
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
         font-size: 1.125rem;
         line-height: 1.125rem;
         text-transform: uppercase;
@@ -83,7 +86,8 @@
             gap: 1rem;
 
             .name {
-              font-family: OswaldMedium;
+              font-family: "Oswald";
+              font-weight: 500;
               font-size: 1.125rem;
               text-transform: uppercase;
             }
@@ -207,18 +211,21 @@
         border-bottom: 1px solid #c4c4c4;
 
         .subtotal {
-          font-family: "OswaldMedium";
+          font-family: "Oswald", sans-serif;
+          font-weight: 500;
           font-size: 1.125rem;
         }
 
         .tax {
-          font-family: "OswaldMedium";
+          font-family: "Oswald", sans-serif;
+          font-weight: 500;
           font-size: 1.125rem;
           color: #828282;
         }
 
         .total {
-          font-family: "OswaldRegular";
+          font-family: "Oswald", sans-serif;
+          font-weight: 400;
           font-size: 1.5rem;
         }
       }
@@ -230,7 +237,8 @@
       color: #ffffff;
       background: #000000;
       text-transform: uppercase;
-      font-family: "OswaldMedium";
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
       font-size: 0.875rem;
       border: none;
       cursor: pointer;
@@ -242,7 +250,8 @@
       color: #ffffff;
       background: #828282;
       text-transform: uppercase;
-      font-family: "OswaldMedium";
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
       font-size: 0.875rem;
       border: none;
     }
@@ -254,7 +263,8 @@
   height: 32px;
   background-color: #f0f2f2;
   border: 2px solid #c4c4c4;
-  font-family: "OswaldMedium";
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
   font-size: 0.875rem;
   color: #828282;
   cursor: pointer;
