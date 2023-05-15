@@ -10,6 +10,7 @@ import Menu from "./Menu/Menu";
 import SearchButton from "./SearchButton/SearchButton";
 import AccountActions from "./AccountActions/AccountActions";
 import { UserContext } from "../../contexts/user/UserContextProvider";
+import { CartContext } from "../../contexts/cart/CartContextProvider";
 import MenuButton from "./MenuButton/MenuButton";
 import User from "../User/User";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const Header = () => {
   const isMatchMedia = useMatchMedia(810);
   const clickOutsideRef = useRef(null);
   const { user } = useContext(UserContext);
+  const { cart } = useContext(CartContext);
   const { pathname } = useLocation();
   const [isSignIn, setIsSignIn] = useState(false);
   const navigate = useNavigate();
@@ -60,7 +62,11 @@ const Header = () => {
   }, [clickOutsideRef]);
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${
+        cart && cart.length > 0 && !user.email.length > 0 ? styles.space : ""
+      }`}
+    >
       {isMenuOpen && !isMatchMedia && (
         <Menu
           menuRef={clickOutsideRef}
