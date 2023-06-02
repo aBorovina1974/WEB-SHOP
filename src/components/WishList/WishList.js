@@ -8,14 +8,14 @@ import { CartContext } from "../../contexts/cart/CartContextProvider";
 import { isProductInWishListExists } from "../../utils/utils";
 
 const WishList = () => {
-  const { wishList, updateWishList, clearWishList, removeWishList } =
+  const { wishList, updateWishList, clearWishList } =
     useContext(WishListContext);
+
   const { cart } = useContext(CartContext);
   const { updateCart } = useContext(CartContext);
 
   const handleAddToCart = (product) => {
     updateCart({ ...product });
-    removeWishList({ ...product });
   };
 
   const navigate = useNavigate();
