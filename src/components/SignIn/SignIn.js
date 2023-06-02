@@ -9,8 +9,8 @@ import InputField from "../InputField/InputField";
 
 export function SignIn({ handleSignInShow }) {
   const navigation = useNavigate();
-  const [formUser, setFormUser] = useState({ username: "", password: "" });
-  const [error, setError] = useState({ username: "", password: "" });
+  const [formUser, setFormUser] = useState({ email: "", password: "" });
+  const [error, setError] = useState({ email: "", password: "" });
   const { setUser } = useContext(UserContext);
   const { pathname } = useLocation();
 
@@ -28,11 +28,11 @@ export function SignIn({ handleSignInShow }) {
 
     if (data) {
       const foundUser = Object.values(data).find(
-        (user) => user.email === formUser.username
+        (user) => user.email === formUser.email
       );
       let matchPassword = false;
       if (!foundUser) {
-        setError((prev) => ({ ...prev, username: "Username do not exist!" }));
+        setError((prev) => ({ ...prev, email: "Email do not exist!" }));
       } else {
         matchPassword = foundUser.password === formUser.password;
         if (!matchPassword) {
@@ -61,15 +61,15 @@ export function SignIn({ handleSignInShow }) {
   const handleSignIn = async (event) => {
     event.preventDefault();
 
-    if (formUser.username === "") {
-      setError((prev) => ({ ...prev, username: "Username is required" }));
+    if (formUser.email === "") {
+      setError((prev) => ({ ...prev, email: "Email is required" }));
     }
 
     if (formUser.password === "") {
       setError((prev) => ({ ...prev, password: "Password is required" }));
     }
 
-    if (formUser.username.length > 0 && formUser.password.length > 0) {
+    if (formUser.email.length > 0 && formUser.password.length > 0) {
       await fetchUser();
       if (pathname === "/signup") {
         navigation("/");
@@ -92,13 +92,13 @@ export function SignIn({ handleSignInShow }) {
       </div>
       <h2>LOGIN YOUR ACCOUNT</h2>
       <InputField
-        id="username"
-        name="username"
+        id="email"
+        name="email"
         type="email"
-        value={formUser.username}
+        value={formUser.email}
         onChange={handleChange}
-        error={error.username}
-        autocomplete={"username"}
+        error={error.email}
+        autocomplete={"email"}
         placeholder={"Email"}
         classField={styles.field}
         classValidation={styles.validation}
@@ -123,7 +123,7 @@ export function SignIn({ handleSignInShow }) {
       <button
         type="submit"
         className={styles["button-signin"]}
-        disabled={error.username.length > 0 || error.password.length > 0}
+        disabled={error.email.length > 0 || error.password.length > 0}
         onClick={handleSignIn}
       >
         SIGN IN
