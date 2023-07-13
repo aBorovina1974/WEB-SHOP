@@ -2,7 +2,8 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import styles from "./Product.module.scss";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
-  calcAndFormatTotalPrice,
+  calcTotalPrice,
+  formatPrice,
   createColorArray,
   createSizeArray,
   isProductInWishListExists,
@@ -30,7 +31,7 @@ const Product = () => {
   const [allColors, setAllColors] = useState([]);
   const [category, setCategory] = useState(null);
   const [brand, setBrand] = useState(null);
-  const [totalPrice, setTotalPrice] = useState("0 Eur");
+  const [totalPrice, setTotalPrice] = useState(0);
   const [showDetails, setShowDetails] = useState(true);
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -60,7 +61,8 @@ const Product = () => {
     if (products) {
       const foundProduct = products.find((f) => f.id === parseInt(productId));
       setProduct(foundProduct);
-      setTotalPrice(`${foundProduct.price.toLocaleString()} Eur`);
+
+      setTotalPrice(foundProduct.price);
 
       if (foundProduct) {
         const responseCat = await fetch(
@@ -149,7 +151,7 @@ const Product = () => {
       case "+":
         setQuantity((prev) => {
           const result = prev + 1;
-          setTotalPrice(calcAndFormatTotalPrice(result, product.price));
+          setTotalPrice(calcTotalPrice(result, product.price));
           return result;
         });
         break;
@@ -157,10 +159,10 @@ const Product = () => {
         setQuantity((prev) => {
           if (prev > 1) {
             const result = prev - 1;
-            setTotalPrice(calcAndFormatTotalPrice(result, product.price));
+            setTotalPrice(calcTotalPrice(result, product.price));
             return result;
           }
-          setTotalPrice(calcAndFormatTotalPrice(prev, product.price));
+          setTotalPrice(calcTotalPrice(prev, product.price));
           return prev;
         });
         break;
@@ -228,7 +230,7 @@ const Product = () => {
             </div>
             <div>
               <h6 className={styles.subtitle}>Price total</h6>
-              <p className={styles.price}>{totalPrice}</p>
+              <p className={styles.price}>{formatPrice(totalPrice, "EUR")}</p>
             </div>
           </div>
           <div className={styles.buttons}>
@@ -278,7 +280,7 @@ const Product = () => {
             <h6 className={styles.subtitle}>Shipping</h6>
             <p className={styles.description}>
               {product.shipping.description} {product.shipping.method}{" "}
-              {product.shipping.price} Eur
+              {formatPrice(product.shipping.price, "EUR")}
             </p>
           </div>
         </div>

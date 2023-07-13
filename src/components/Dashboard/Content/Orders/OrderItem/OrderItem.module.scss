@@ -1,0 +1,55 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #dfdfdf;
+  margin-bottom: 1rem;
+  font-family: "Oswald", sans-serif;
+
+  caption,
+  td,
+  th {
+    padding: 0.5rem;
+  }
+
+  caption,
+  th {
+    text-align: left;
+  }
+
+  caption {
+    white-space: pre;
+    background-color: hsl(0 0% 0%);
+    color: white;
+    @media (max-width: 810px) {
+      white-space: pre-wrap;
+    }
+  }
+
+  th {
+    background-color: hsl(0 0% 0% / 0.5);
+    @media (max-width: 810px) {
+      display: none;
+    }
+  }
+
+  tr:nth-of-type(2n) {
+    background-color: hsl(0 0% 0% / 0.1);
+  }
+
+  tfoot {
+    color: white;
+    background-color: hsl(0 0% 0% / 0.5);
+  }
+}
+
+@media (max-width: 810px) {
+  td {
+    display: block;
+  }
+
+  tbody td::before {
+    content: attr(data-cell) ": ";
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+}

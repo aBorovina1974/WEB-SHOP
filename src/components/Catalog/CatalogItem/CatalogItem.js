@@ -3,7 +3,7 @@ import ProductImage from "../../Product/ProductGalery/ProductImage";
 import styles from "./CatalogItem.module.scss";
 import ColorPalette from "../../ColorPalette/ColorPalette";
 import { Link } from "react-router-dom";
-import { createColorArray } from "../../../utils/utils";
+import { createColorArray, formatPrice } from "../../../utils/utils";
 
 const CatalogItem = ({ product, category }) => {
   const [colors, setColors] = useState(createColorArray(product.colors, 1));
@@ -41,7 +41,7 @@ const CatalogItem = ({ product, category }) => {
         {product.name}
       </span>
       <span className={styles["catalog-item__product-price"]}>
-        {product.price} EUR
+        {formatPrice(product.price, "EUR")}
       </span>
       <ColorPalette colors={colors} onColorChange={onColorChange} />
     </div>

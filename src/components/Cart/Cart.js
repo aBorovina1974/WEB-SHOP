@@ -143,15 +143,17 @@ const Cart = () => {
           <div className={styles["order-details"]}>
             <div className={styles.detail}>
               <span className={styles.subtotal}>Subtotal</span>
-              <span className={styles.subtotal}>{formatPrice(subTotal)}</span>
+              <span className={styles.subtotal}>
+                {formatPrice(subTotal, "EUR")}
+              </span>
             </div>
             <div className={styles.detail}>
               <span className={styles.tax}>Tax</span>
-              <span className={styles.tax}>{formatPrice(tax)}</span>
+              <span className={styles.tax}>{formatPrice(tax, "EUR")}</span>
             </div>
             <div className={styles.detail}>
               <span className={styles.total}>Order Total</span>
-              <span className={styles.total}>{formatPrice(total)}</span>
+              <span className={styles.total}>{formatPrice(total, "EUR")}</span>
             </div>
           </div>
           <button

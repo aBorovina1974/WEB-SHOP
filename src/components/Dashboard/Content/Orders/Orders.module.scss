@@ -1,0 +1,9 @@
+.orders {
+  width: 100%;
+  height: 100dvh;
+  margin-top: 1.25rem;
+  overflow-y: auto;
+  @media (max-width: 810px) {
+    margin-top: 1rem;
+  }
+}

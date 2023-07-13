@@ -3,7 +3,7 @@ import styles from "./CartItemMobile.module.scss";
 import SelectedColor from "../SelectedColor/SelectedColor";
 import ProductImage from "../../Product/ProductGalery/ProductImage";
 import CartActions from "../CartActions/CartActions";
-import { calcAndFormatTotalPrice } from "../../../utils/utils";
+import { calcTotalPrice, formatPrice } from "../../../utils/utils";
 import ProductQuantity from "../../Product/ProductQuantity/ProductQuantity";
 
 const CartItemMobile = ({ product, handleUpdateCart }) => {
@@ -17,7 +17,7 @@ const CartItemMobile = ({ product, handleUpdateCart }) => {
           handleUpdateCart(
             product,
             result,
-            calcAndFormatTotalPrice(result, product.price)
+            calcTotalPrice(result, product.price)
           );
           return result;
         });
@@ -30,7 +30,7 @@ const CartItemMobile = ({ product, handleUpdateCart }) => {
             handleUpdateCart(
               product,
               result,
-              calcAndFormatTotalPrice(result, product.price)
+              calcTotalPrice(result, product.price)
             );
             return result;
           }
@@ -51,7 +51,9 @@ const CartItemMobile = ({ product, handleUpdateCart }) => {
             <div className={styles.name}>{product.name}</div>
             <div className={styles["label-value"]}>
               <span className={styles.label}>Price:</span>
-              <span className={styles.value}>{product.price} EUR</span>
+              <span className={styles.value}>
+                {formatPrice(product.price, "EUR")}
+              </span>
             </div>
             <div className={styles["label-value"]}>
               <span className={styles.label}>Size:</span>
@@ -79,7 +81,7 @@ const CartItemMobile = ({ product, handleUpdateCart }) => {
               Total:
             </span>
             <span className={`${styles.value} ${styles["price-value"]}`}>
-              {product.total}
+              {formatPrice(product.total, "EUR")}
             </span>
           </div>
         </div>

@@ -53,16 +53,25 @@ export function getRandomColors(num, selected) {
   });
 }
 
-export function calcAndFormatTotalPrice(quantity, price) {
-  const totalPrice = Math.round(quantity * price * 100) / 100;
-  const formattedPrice = totalPrice.toLocaleString();
-  return `${formattedPrice} EUR`;
+export function formatPrice(value, currency, display = "code") {
+  const userLanguage = window.navigator.language;
+  return new Intl.NumberFormat(userLanguage, {
+    style: "currency",
+    currency: currency,
+    currencyDisplay: display,
+  }).format(value);
 }
 
-export function formatPrice(price) {
-  const totalPrice = Math.round(price * 100) / 100;
-  const formattedPrice = totalPrice.toLocaleString();
-  return `${formattedPrice} EUR`;
+export function formatDate(date) {
+  const userLanguage = window.navigator.language;
+  return new Intl.DateTimeFormat(userLanguage, {
+    dateStyle: "short",
+    timeStyle: "short",
+  }).format(date);
+}
+
+export function calcTotalPrice(quantity, price) {
+  return quantity * price;
 }
 
 export function createColorArray(array, defaultSel) {

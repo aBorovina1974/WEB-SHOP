@@ -3,6 +3,7 @@ import WishListActions from "../WishListActions/WishListActions";
 import ProductImage from "../../Product/ProductGalery/ProductImage";
 import styles from "./WishListItem.module.scss";
 import useMatchMedia from "../../../hooks/useMatchMedia";
+import { formatPrice } from "../../../utils/utils";
 
 const WishListItem = ({ product, handleAddToCart, isWishListExist }) => {
   const isMatchMedia = useMatchMedia(1024);
@@ -16,7 +17,7 @@ const WishListItem = ({ product, handleAddToCart, isWishListExist }) => {
             productName={product.image}
           />
           <h4>{product.name}</h4>
-          <span>{`${product.price} EUR`}</span>
+          <span>{formatPrice(product.price, "EUR")}</span>
         </div>
         <WishListActions product={product} />
       </div>

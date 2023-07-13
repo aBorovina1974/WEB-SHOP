@@ -4,7 +4,7 @@ import CartActions from "../CartActions/CartActions";
 import SelectedColor from "../SelectedColor/SelectedColor";
 import React, { useState } from "react";
 import ProductQuantity from "../../Product/ProductQuantity/ProductQuantity";
-import { calcAndFormatTotalPrice } from "../../../utils/utils";
+import { calcTotalPrice, formatPrice } from "../../../utils/utils";
 
 const CartItem = ({ columns, product, handleUpdateCart }) => {
   const [quantity, setQuantity] = useState(product ? product.quantity : 1);
@@ -17,7 +17,7 @@ const CartItem = ({ columns, product, handleUpdateCart }) => {
           handleUpdateCart(
             product,
             result,
-            calcAndFormatTotalPrice(result, product.price)
+            calcTotalPrice(result, product.price)
           );
           return result;
         });
@@ -29,7 +29,7 @@ const CartItem = ({ columns, product, handleUpdateCart }) => {
             handleUpdateCart(
               product,
               result,
-              calcAndFormatTotalPrice(result, product.price)
+              calcTotalPrice(result, product.price)
             );
             return result;
           }
@@ -57,7 +57,11 @@ const CartItem = ({ columns, product, handleUpdateCart }) => {
         );
 
       case "price":
-        return <div className={styles.price}>{item[key.key]} Eur</div>;
+        return (
+          <div className={styles.price}>
+            {formatPrice(item[key.key], "EUR")}
+          </div>
+        );
 
       case "size":
         return <div className={styles.size}>{item[key.key]}</div>;
@@ -71,7 +75,11 @@ const CartItem = ({ columns, product, handleUpdateCart }) => {
         );
 
       case "total":
-        return <div className={styles.total}>{item[key.key]}</div>;
+        return (
+          <div className={styles.total}>
+            {formatPrice(item[key.key], "EUR")}
+          </div>
+        );
 
       default:
         return <CartActions product={item} />;
